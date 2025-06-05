@@ -1,10 +1,12 @@
+import fondo1 from "../assets/img/fondo1.png";
+
 export default function Home() {
   return (
     <section
       className="relative bg-cover bg-center bg-no-repeat h-screen flex items-center justify-center"
-      style={{ backgroundImage: "url('/fondo-aire.jpg')" }}
+      style={{ backgroundImage: `url(${fondo1})` }}
     >
-      <div className="absolute inset-0 bg-black bg-opacity-60 z-0"></div>
+      <div className="absolute inset-0  bg-opacity-60 z-0"></div>
 
       <div className="text-center text-white z-10 px-4">
         <h1 className="text-4xl md:text-6xl font-bold mb-6">
