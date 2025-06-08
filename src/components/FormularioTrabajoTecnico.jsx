@@ -1,8 +1,16 @@
 import { useState } from "react";
 import jsPDF from "jspdf";
+import { useMateriales } from "../hooks/useMateriales";
 
 export default function FormularioTrabajoTecnico() {
   const hoy = new Date().toISOString().split("T")[0];
+  
+  // Lista de materiales
+  const materialesLista = useMateriales();
+  const [mostrarModal, setMostrarModal] = useState(false);
+  const [busqueda, setBusqueda] = useState("");
+
+
   // contenido del formulario
   const [form, setForm] = useState({
     fecha: hoy,
@@ -192,15 +200,44 @@ export default function FormularioTrabajoTecnico() {
 
       <h2 className="font-semibold mb-2">1. Materiales Utilizados</h2>
       {form.materiales.map((item, index) => (
-        <div className="grid grid-cols-3 gap-2 mb-2" key={index}>
-          <input
+          <div className="grid grid-cols-4 gap-2 mb-2 items-center" key={index}>
+            <input
+              list="codigos"
+              value={item.codigo}
+              onChange={(e) => {
+                const codigoSeleccionado = e.target.value;
+                const material = materialesLista.find((m) => m.CODIGO === codigoSeleccionado);
+                const descripcion = material ? material.PRODUCTO : "";
+              
+                handleInputChange({ target: { value: codigoSeleccionado } }, index, "materiales", "codigo");
+                handleInputChange({ target: { value: descripcion } }, index, "materiales", "descripcion");
+              }}
+              placeholder="Código"
+              className="border p-2"
+            />
+          <datalist id="codigos">
+           {materialesLista.map((m, idx) => (
+             <option key={idx} value={m.CODIGO}>
+               {m.PRODUCTO}
+             </option>
+           ))}
+         </datalist>
+         <input
+             value={item.descripcion}
+             onChange={(e) =>
+               handleInputChange(e, index, "materiales", "descripcion")
+             }
+             placeholder="Descripción"
+             className="border p-2"
+           />
+          {/* <input
             value={item.codigo}
             onChange={(e) =>
               handleInputChange(e, index, "materiales", "codigo")
             }
             placeholder="Código"
             className="border p-2"
-          />
+          /> */}
           <input
             value={item.numero}
             onChange={(e) =>
@@ -208,15 +245,7 @@ export default function FormularioTrabajoTecnico() {
             }
             placeholder="Cantidad"
             className="border p-2"
-          />
-          <input
-            value={item.descripcion}
-            onChange={(e) =>
-              handleInputChange(e, index, "materiales", "descripcion")
-            }
-            placeholder="Descripción"
-            className="border p-2"
-          />
+          />  
         </div>
       ))}
       <button
@@ -227,6 +256,71 @@ export default function FormularioTrabajoTecnico() {
       >
         Agregar Material
       </button>
+      <button onClick={() => setMostrarModal(true)} className="mb-4 px-4 py-1 bg-green-500 text-white rounded">
+        Ver todos los materiales
+      </button>
+          {mostrarModal && (
+          <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+            <div className="bg-white p-6 rounded-lg w-full max-w-3xl max-h-[80vh] overflow-y-auto shadow-lg">
+              <h2 className="text-lg font-bold mb-4">Lista completa de materiales</h2>
+              <div className="text-right mt-4">
+                <button
+                  onClick={() => {
+                    setMostrarModal(false);
+                    setBusqueda("");
+                  }}
+                  className="px-4 py-2 bg-gray-300 rounded hover:bg-gray-400"
+                >
+                  Cerrar
+                </button>
+              </div>
+              {/* Buscador */}
+              <input
+                type="text"
+                value={busqueda}
+                onChange={(e) => setBusqueda(e.target.value)}
+                placeholder="Buscar por código o descripción..."
+                className="mb-4 w-full p-2 border border-gray-300 rounded"
+              />
+
+              {/* Tabla filtrada */}
+              <table className="w-full text-sm border">
+                <thead className="bg-gray-200 sticky top-0">
+                  <tr>
+                    <th className="p-2 text-left">Código</th>
+                    <th className="p-2 text-left">Descripción</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {materialesLista
+                    .filter((material) =>
+                      (material.CODIGO + " " + material.PRODUCTO)
+                        .toLowerCase()
+                        .includes(busqueda.toLowerCase())
+                    )
+                    .map((material, idx) => (
+                      <tr
+                        key={idx}
+                        className="hover:bg-gray-100 cursor-pointer"
+                        onClick={() => {
+                          addField("materiales", {
+                            codigo: material.CODIGO,
+                            descripcion: material.PRODUCTO,
+                            numero: "",
+                          });
+                          setMostrarModal(false);
+                          setBusqueda(""); // Limpiar búsqueda al cerrar
+                        }}
+                      >
+                        <td className="p-2">{material.CODIGO}</td>
+                        <td className="p-2">{material.PRODUCTO}</td>
+                      </tr>
+                    ))}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        )}
 
       <h2 className="font-semibold mb-2">2. Mano de Obra Realizada</h2>
       {form.trabajos.map((item, index) => (
