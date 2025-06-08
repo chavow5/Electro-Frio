@@ -15,7 +15,7 @@ export const Header = () => {
         {/* Navegación para pantallas grandes */}
         <nav className="hidden lg:flex items-center space-x-8">
           <a href="/" className="hover:text-teal-400">Home</a>
-          <a href="//FormularioTrabajoTecnico" className="hover:text-teal-400">Formulario</a>
+          <a href="/FormularioTrabajoTecnico" className="hover:text-teal-400">Formulario</a>
           <a
             href="/signup"
             className="bg-teal-500 hover:bg-teal-600 text-white px-4 py-2 rounded transition"
