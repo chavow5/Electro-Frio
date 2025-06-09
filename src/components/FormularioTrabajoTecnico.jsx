@@ -129,20 +129,35 @@ export default function FormularioTrabajoTecnico() {
       <h1 className="text-xl font-bold mb-4">Planilla de Trabajo Técnico</h1>
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
+        {/* Fecha */}
         <input
           type="date"
-          name="fecha" // <-- Importante para el handleInputChange
+          name="fecha" // muestra la fecha actual
+          max={hoy} // no permite una fecha futura
           value={form.fecha}
           onChange={handleInputChange}
           className="border p-2"
         />
-        <input
+        {/* Tecnicos, agregar nombres de los tecnicos */}
+        <select
           name="tecnicos"
           value={form.tecnicos}
-          onChange={handleInputChange}
-          placeholder="Técnicos"
-          className="border p-2"
-        />
+          onChange={(e) =>
+            setForm({
+              ...form,
+              tecnicos: Array.from(e.target.selectedOptions, (option) => option.value),
+            })
+          }
+          multiple
+          className="border p-2 w-full"
+        >
+          <option value="David Ramirez">David Ramirez</option>
+          <option value="Facu Neira">Facu Neira</option>
+          <option value="David Neira">David Neira</option>
+          <option value="Facu Ramirez">Facu Ramirez</option>
+          <option value="Chavo Ramirez">Chavo Ramirez</option>
+        </select>
+        {/* Cliente */}
         <input
           name="cliente"
           value={form.cliente}
@@ -152,6 +167,7 @@ export default function FormularioTrabajoTecnico() {
         />
       </div>
       <div className="md:col-span-3 flex items-center gap-2 mb-2">
+        {/* Ubicación */}
         <input
           name="ubicacion"
           value={form.ubicacion}
@@ -283,41 +299,43 @@ export default function FormularioTrabajoTecnico() {
                 className="mb-4 w-full p-2 border border-gray-300 rounded"
               />
 
-              {/* Tabla filtrada */}
-              <table className="w-full text-sm border">
-                <thead className="bg-gray-200 sticky top-0">
-                  <tr>
-                    <th className="p-2 text-left">Código</th>
-                    <th className="p-2 text-left">Descripción</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {materialesLista
-                    .filter((material) =>
-                      (material.CODIGO + " " + material.PRODUCTO)
-                        .toLowerCase()
-                        .includes(busqueda.toLowerCase())
-                    )
-                    .map((material, idx) => (
-                      <tr
-                        key={idx}
-                        className="hover:bg-gray-100 cursor-pointer"
-                        onClick={() => {
-                          addField("materiales", {
-                            codigo: material.CODIGO,
-                            descripcion: material.PRODUCTO,
-                            numero: "",
-                          });
-                          setMostrarModal(false);
-                          setBusqueda(""); // Limpiar búsqueda al cerrar
-                        }}
-                      >
-                        <td className="p-2">{material.CODIGO}</td>
-                        <td className="p-2">{material.PRODUCTO}</td>
-                      </tr>
-                    ))}
-                </tbody>
-              </table>
+              {/* Tabla filtrada con table-auto */}
+              <div className="overflow-x-auto">
+                <table className="table-auto w-full text-sm border">
+                  <thead className="bg-gray-200 sticky top-0">
+                    <tr>
+                      <th className="p-2 text-left">Código</th>
+                      <th className="p-2 text-left">Descripción</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {materialesLista
+                      .filter((material) =>
+                        (material.CODIGO + " " + material.PRODUCTO)
+                          .toLowerCase()
+                          .includes(busqueda.toLowerCase())
+                      )
+                      .map((material, idx) => (
+                        <tr
+                          key={idx}
+                          className="hover:bg-gray-100 cursor-pointer"
+                          onClick={() => {
+                            addField("materiales", {
+                              codigo: material.CODIGO,
+                              descripcion: material.PRODUCTO,
+                              numero: "",
+                            });
+                            setMostrarModal(false);
+                            setBusqueda(""); // Limpiar búsqueda al cerrar
+                          }}
+                        >
+                          <td className="p-2">{material.CODIGO}</td>
+                          <td className="p-2">{material.PRODUCTO}</td>
+                        </tr>
+                      ))}
+                  </tbody>
+                </table>
+              </div>
             </div>
           </div>
         )}
