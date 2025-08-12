@@ -1,4 +1,3 @@
-// equipo de trabajo
 export const Equipos = () => {
   const equipo = [
     {
