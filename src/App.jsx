@@ -1,5 +1,6 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Home from './pages/Home';
+import Equipos from './pages/Equipos';
 // import About from './pages/About';
 import Header from './components/Header.jsx';
 import Footer from './components/Footer.jsx';
@@ -18,6 +19,7 @@ function App() {
       </Routes>
       {/* prueba formulario en pagina de inicio, despues cambiarlo a una pagina */}
       <FormularioTrabajoTecnico/>
+      <Equipos/>
       <Footer />
     </Router>
   );
