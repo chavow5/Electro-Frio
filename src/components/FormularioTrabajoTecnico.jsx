@@ -1,25 +1,19 @@
 import { useState } from "react";
 import jsPDF from "jspdf";
-import { useMateriales } from "../hooks/useMateriales";
-import { generarWord } from "./GuardarEnWord.jsx";
 
 export default function FormularioTrabajoTecnico() {
   const hoy = new Date().toISOString().split("T")[0];
 
-  // Lista de materiales
-  const materialesLista = useMateriales();
-  const [mostrarModal, setMostrarModal] = useState(false);
-  const [busqueda, setBusqueda] = useState("");
-
-  // contenido del formulario
   const [form, setForm] = useState({
     fecha: hoy,
+    hora: "",
     tecnicos: "",
     cliente: "",
-    ubicacion: "",
-    materiales: [{ codigo: "", numero: "", descripcion: "" }],
-    trabajos: [{ trabajo: "", cantidad: "" }],
+    domicilio: "",
+    materiales: [{ accion: "", cantidad: "", descripcion: "" }],
+    trabajos: [{ accion: "", cantidad: "", descripcion: "" }],
     observaciones: "",
+    ubicaciones: "",
   });
 
   const handleInputChange = (e, index, section, field) => {
@@ -32,8 +26,11 @@ export default function FormularioTrabajoTecnico() {
     }
   };
 
-  const addField = (section, emptyItem) => {
-    setForm({ ...form, [section]: [...form[section], emptyItem] });
+  const addField = (section) => {
+    setForm({
+      ...form,
+      [section]: [...form[section], { accion: "", cantidad: "", descripcion: "" }],
+    });
   };
 
   const generatePDF = () => {
@@ -44,371 +41,188 @@ export default function FormularioTrabajoTecnico() {
     doc.text("PLANILLA DE TRABAJO TÉCNICO", 70, y);
     y += 10;
 
-    doc.setFontSize(11);
+    doc.setFontSize(10);
     doc.text(`Fecha: ${form.fecha}`, 10, y);
-    doc.text(`Técnicos: ${form.tecnicos}`, 80, y);
+    doc.text(`Hora: ${form.hora}`, 70, y);
+    doc.text(`Técnico/os: ${form.tecnicos}`, 120, y);
     y += 7;
     doc.text(`Cliente: ${form.cliente}`, 10, y);
-    y += 10;
-    doc.text(`Ubicación: ${form.ubicacion}`, 10, y);
-    y += 7;
-    doc.text(
-      `Descripción de la ubicación: ${form.descripcionUbicacion}`,
-      10,
-      y
-    );
+    doc.text(`Domicilio: ${form.domicilio}`, 120, y);
     y += 10;
 
-    // Sección 1 - Materiales
+    // 1. Materiales utilizados
     doc.setFont(undefined, "bold");
-    doc.text("1. MATERIALES UTILIZADOS", 10, y);
-    y += 7;
+    doc.text("1. MATERIALES UTILIZADOS - COMPROBANTE:", 10, y);
+    y += 5;
 
     doc.setFont(undefined, "normal");
-    doc.setFontSize(10);
-    doc.rect(10, y, 190, 8); // Título fila
-    doc.text("Código", 12, y + 6);
-    doc.text("N°", 42, y + 6);
-    doc.text("Descripción", 60, y + 6);
-    doc.text("Código", 112, y + 6);
-    doc.text("N°", 142, y + 6);
-    doc.text("Descripción", 160, y + 6);
-    y += 10;
+    doc.rect(10, y, 30, 8);
+    doc.text("Acción", 12, y + 5);
+    doc.rect(40, y, 40, 8);
+    doc.text("Cantidad/Longitud", 42, y + 5);
+    doc.rect(80, y, 120, 8);
+    doc.text("Descripción", 82, y + 5);
+    y += 8;
 
-    form.materiales.forEach((m, i) => {
-      const yRow = y + i * 8;
-      doc.rect(10, yRow, 190, 8);
-      doc.text(m.codigo, 12, yRow + 6);
-      doc.text(m.numero, 42, yRow + 6);
-      doc.text(m.descripcion, 60, yRow + 6);
+    form.materiales.forEach((m) => {
+      doc.rect(10, y, 30, 8);
+      doc.text(m.accion, 12, y + 5);
+      doc.rect(40, y, 40, 8);
+      doc.text(m.cantidad, 42, y + 5);
+      doc.rect(80, y, 120, 8);
+      doc.text(m.descripcion, 82, y + 5);
+      y += 8;
     });
+    y += 5;
 
-    y += form.materiales.length * 8 + 10;
-
-    // Sección 2 - Mano de obra
+    // 2. Mano de obra
     doc.setFont(undefined, "bold");
-    doc.text("2. MANO DE OBRA REALIZADA", 10, y);
-    y += 7;
+    doc.text("2. MANO DE OBRA REALIZADA - COMPROBANTE:", 10, y);
+    y += 5;
 
     doc.setFont(undefined, "normal");
-    doc.rect(10, y, 150, 8);
-    doc.rect(160, y, 40, 8);
-    doc.text("Trabajo Realizado", 12, y + 6);
-    doc.text("Cantidad", 162, y + 6);
-    y += 10;
+    doc.rect(10, y, 30, 8);
+    doc.text("Acción", 12, y + 5);
+    doc.rect(40, y, 40, 8);
+    doc.text("Cantidad/Longitud", 42, y + 5);
+    doc.rect(80, y, 120, 8);
+    doc.text("Descripción", 82, y + 5);
+    y += 8;
 
-    form.trabajos.forEach((t, i) => {
-      const yRow = y + i * 8;
-      doc.rect(10, yRow, 150, 8);
-      doc.rect(160, yRow, 40, 8);
-      doc.text(t.trabajo, 12, yRow + 6);
-      doc.text(t.cantidad, 162, yRow + 6);
+    form.trabajos.forEach((t) => {
+      doc.rect(10, y, 30, 8);
+      doc.text(t.accion, 12, y + 5);
+      doc.rect(40, y, 40, 8);
+      doc.text(t.cantidad, 42, y + 5);
+      doc.rect(80, y, 120, 8);
+      doc.text(t.descripcion, 82, y + 5);
+      y += 8;
     });
+    y += 5;
 
-    y += form.trabajos.length * 8 + 10;
-
-    // Sección 3 - Observaciones
+    // 3. Observaciones
     doc.setFont(undefined, "bold");
     doc.text("3. OBSERVACIONES GENERALES", 10, y);
-    y += 7;
+    y += 5;
     doc.setFont(undefined, "normal");
+    doc.rect(10, y, 190, 20);
+    doc.text(doc.splitTextToSize(form.observaciones, 185), 12, y + 5);
+    y += 25;
 
-    const obs = doc.splitTextToSize(form.observaciones, 180);
-    doc.rect(10, y, 190, obs.length * 6 + 10);
-    doc.text(obs, 12, y + 6);
-    y += obs.length * 6 + 15;
+    // 4. Ubicaciones
+    doc.setFont(undefined, "bold");
+    doc.text("4. UBICACIONES", 10, y);
+    y += 5;
+    doc.setFont(undefined, "normal");
+    doc.rect(10, y, 190, 40);
+    doc.text(doc.splitTextToSize(form.ubicaciones, 185), 12, y + 5);
 
-    // Firma
-    doc.text("Firma del técnico: _________________________________", 120, y);
-
-    doc.save(`${hoy}-(hora)-tecnico`);
+    doc.save(`Planilla-${form.fecha}.pdf`);
   };
 
   return (
-    <div className="p-6 max-w-4xl mx-auto bg-black-300 shadow rounded">
+    <div className="p-6 max-w-4xl mx-auto bg-gray-100 shadow rounded">
       <h1 className="text-xl font-bold mb-4">Planilla de Trabajo Técnico</h1>
 
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
-        {/* Fecha */}
-        <input
-          type="date"
-          name="fecha" // muestra la fecha actual
-          max={hoy} // no permite una fecha futura
-          value={form.fecha}
-          onChange={handleInputChange}
-          className="border p-2"
-        />
-        {/* Tecnicos, agregar nombres de los tecnicos */}
-        <select
-          name="tecnicos"
-          // value={form.tecnicos}
-          onChange={(e) =>
-            setForm({
-              ...form,
-              tecnicos: Array.from(
-                e.target.selectedOptions,
-                (option) => option.value
-              ),
-            })
-          }
-          multiple value={form.cliente || ""}
-          placeholder="Seleccionar Técnicos"
-
-          className="border p-2 w-full"
-        >
-          <option value="David Ramirez">David Ramirez</option>
-          <option value="Facu Neira">Facu Neira</option>
-          <option value="David Neira">David Neira</option>
-          <option value="Facu Ramirez">Facu Ramirez</option>
-          <option value="Chavo Ramirez">Chavo Ramirez</option>
-        </select>
-        {/* Cliente */}
-        <input
-          name="cliente"
-          value={form.cliente}
-          onChange={handleInputChange}
-          placeholder="Cliente"
-          className="border p-2"
-        />
-      </div>
-      <div className="md:col-span-3 flex items-center gap-2 mb-2">
-        {/* Ubicación */}
-        <input
-          name="ubicacion"
-          value={form.ubicacion}
-          onChange={handleInputChange}
-          placeholder="Ubicación (lat, long)"
-          className="border p-2"
-        />
-        <button
-          type="button"
-          onClick={() => {
-            if (navigator.geolocation) {
-              navigator.geolocation.getCurrentPosition(
-                (position) => {
-                  const { latitude, longitude } = position.coords;
-                  setForm((prevForm) => ({
-                    ...prevForm,
-                    ubicacion: `${latitude.toFixed(5)}, ${longitude.toFixed(
-                      5
-                    )}`,
-                  }));
-                },
-                (error) => {
-                  alert("No se pudo obtener la ubicación");
-                  console.error(error);
-                }
-              );
-            } else {
-              alert("La geolocalización no es compatible con este navegador");
+     <div className="grid grid-cols-2 md:grid-cols-3 gap-4 mb-4">
+  <input
+    type="date"
+    name="fecha"
+    value={form.fecha}
+    onChange={handleInputChange}
+    className="border p-2"
+  />
+  <input
+    type="time"
+    name="hora"
+    value={form.hora}
+    onChange={handleInputChange}
+    className="border p-2"
+  />
+  <input
+    name="tecnicos"
+    placeholder="Técnico/os"
+    value={form.tecnicos}
+    onChange={handleInputChange}
+    className="border p-2"
+  />
+  <input
+    name="cliente"
+    placeholder="Cliente"
+    value={form.cliente}
+    onChange={handleInputChange}
+    className="border p-2"
+  />
+  
+  {/* Campo de domicilio */}
+  <div className="flex gap-2">
+    <input
+      name="domicilio"
+      placeholder="Domicilio"
+      value={form.domicilio}
+      onChange={handleInputChange}
+      className="border p-2 flex-1"
+    />
+    <button
+      type="button"
+      onClick={() => {
+        if (navigator.geolocation) {
+          navigator.geolocation.getCurrentPosition(
+            (position) => {
+              const { latitude, longitude } = position.coords;
+              setForm((prevForm) => ({
+                ...prevForm,
+                domicilio: `${latitude.toFixed(5)}, ${longitude.toFixed(5)}`,
+              }));
+            },
+            (error) => {
+              alert("No se pudo obtener la ubicación");
+              console.error(error);
             }
-          }}
-          className="px-3 py-1 bg-gray-700 text-white rounded"
-        >
-          Obtener Ubicación
-        </button>
-      </div>
+          );
+        } else {
+          alert("La geolocalización no es compatible con este navegador");
+        }
+      }}
+      className="px-3 py-1 bg-gray-700 text-white rounded"
+    >
+      Ubicacion
+    </button>
+  </div>
+</div>
 
-      <div className="md:col-span-3 mb-4">
-        <input
-          name="descripcionUbicacion"
-          value={form.descripcionUbicacion}
-          onChange={handleInputChange}
-          placeholder="Descripción de la ubicación (Ej: galpón, oficina, etc.)"
-          className="border p-2 w-full"
-        />
-      </div>
+
 
       <h2 className="font-semibold mb-2">1. Materiales Utilizados</h2>
-      {form.materiales.map((item, index) => (
-        <div className="grid grid-cols-4 gap-2 mb-2 items-center" key={index}>
-          <input
-            list="codigos"
-            value={item.codigo}
-            onChange={(e) => {
-              const codigoSeleccionado = e.target.value;
-              const material = materialesLista.find(
-                (m) => m.CODIGO === codigoSeleccionado
-              );
-              const descripcion = material ? material.PRODUCTO : "";
-
-              handleInputChange(
-                { target: { value: codigoSeleccionado } },
-                index,
-                "materiales",
-                "codigo"
-              );
-              handleInputChange(
-                { target: { value: descripcion } },
-                index,
-                "materiales",
-                "descripcion"
-              );
-            }}
-            placeholder="Código"
-            className="border p-2"
-          />
-          <datalist id="codigos">
-            {materialesLista.map((m, idx) => (
-              <option key={idx} value={m.CODIGO}>
-                {m.PRODUCTO}
-              </option>
-            ))}
-          </datalist>
-          <input
-            value={item.descripcion}
-            onChange={(e) =>
-              handleInputChange(e, index, "materiales", "descripcion")
-            }
-            placeholder="Descripción"
-            className="border p-2"
-          />
-          {/* <input
-            value={item.codigo}
-            onChange={(e) =>
-              handleInputChange(e, index, "materiales", "codigo")
-            }
-            placeholder="Código"
-            className="border p-2"
-          /> */}
-          <input
-            value={item.numero}
-            onChange={(e) =>
-              handleInputChange(e, index, "materiales", "numero")
-            }
-            placeholder="Cantidad"
-            className="border p-2"
-          />
+      {form.materiales.map((item, i) => (
+        <div key={i} className="grid grid-cols-3 gap-2 mb-2">
+          <input value={item.accion} onChange={(e) => handleInputChange(e, i, "materiales", "accion")} placeholder="Acción" className="border p-2" />
+          <input value={item.cantidad} onChange={(e) => handleInputChange(e, i, "materiales", "cantidad")} placeholder="Cantidad/Longitud" className="border p-2" />
+          <input value={item.descripcion} onChange={(e) => handleInputChange(e, i, "materiales", "descripcion")} placeholder="Descripción" className="border p-2" />
         </div>
       ))}
-      <button
-        onClick={() =>
-          addField("materiales", { codigo: "", numero: "", descripcion: "" })
-        }
-        className="mb-4 px-4 py-1 bg-blue-500 text-white rounded"
-      >
-        Agregar Material
-      </button>
-      <button
-        onClick={() => setMostrarModal(true)}
-        className="mb-4 px-4 py-1 bg-green-500 text-white rounded"
-      >
-        Ver todos los materiales
-      </button>
-      {mostrarModal && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-          <div className="bg-white p-6 rounded-lg w-full max-w-3xl max-h-[80vh] overflow-y-auto shadow-lg">
-            <h2 className="text-lg font-bold mb-4">
-              Lista completa de materiales
-            </h2>
-            <div className="text-right mt-4">
-              <button
-                onClick={() => {
-                  setMostrarModal(false);
-                  setBusqueda("");
-                }}
-                className="px-4 py-2 bg-gray-300 rounded hover:bg-gray-400"
-              >
-                Cerrar
-              </button>
-            </div>
-            {/* Buscador */}
-            <input
-              type="text"
-              value={busqueda}
-              onChange={(e) => setBusqueda(e.target.value)}
-              placeholder="Buscar por código o descripción..."
-              className="mb-4 w-full p-2 border border-gray-300 rounded"
-            />
-
-            {/* Tabla filtrada con table-auto */}
-            <div className="overflow-x-auto">
-              <table className="table-auto w-full text-sm border">
-                <thead className="bg-gray-200 sticky top-0">
-                  <tr>
-                    <th className="p-2 text-left">Código</th>
-                    <th className="p-2 text-left">Descripción</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {materialesLista
-                    .filter((material) =>
-                      (material.CODIGO + " " + material.PRODUCTO)
-                        .toLowerCase()
-                        .includes(busqueda.toLowerCase())
-                    )
-                    .map((material, idx) => (
-                      <tr
-                        key={idx}
-                        className="hover:bg-gray-100 cursor-pointer"
-                        onClick={() => {
-                          addField("materiales", {
-                            codigo: material.CODIGO,
-                            descripcion: material.PRODUCTO,
-                            numero: "",
-                          });
-                          setMostrarModal(false);
-                          setBusqueda(""); // Limpiar búsqueda al cerrar
-                        }}
-                      >
-                        <td className="p-2">{material.CODIGO}</td>
-                        <td className="p-2">{material.PRODUCTO}</td>
-                      </tr>
-                    ))}
-                </tbody>
-              </table>
-            </div>
-          </div>
-        </div>
-      )}
-
+      <button onClick={() => addField("materiales")} className="mb-4 px-4 py-1 bg-blue-500 text-white rounded">Agregar Material</button>
       <h2 className="font-semibold mb-2">2. Mano de Obra Realizada</h2>
-      {form.trabajos.map((item, index) => (
-        <div className="grid grid-cols-2 gap-2 mb-2" key={index}>
-          <input
-            value={item.trabajo}
-            onChange={(e) => handleInputChange(e, index, "trabajos", "trabajo")}
-            placeholder="Trabajo Realizado"
-            className="border p-2"
-          />
-          <input
-            value={item.cantidad}
-            onChange={(e) =>
-              handleInputChange(e, index, "trabajos", "cantidad")
-            }
-            placeholder="Cantidad"
-            className="border p-2"
-          />
+      {form.trabajos.map((item, i) => (
+        <div key={i} className="grid grid-cols-3 gap-2 mb-2">
+          <input value={item.accion} onChange={(e) => handleInputChange(e, i, "trabajos", "accion")} placeholder="Acción" className="border p-2" />
+          <input value={item.cantidad} onChange={(e) => handleInputChange(e, i, "trabajos", "cantidad")} placeholder="Cantidad/Longitud" className="border p-2" />
+          <input value={item.descripcion} onChange={(e) => handleInputChange(e, i, "trabajos", "descripcion")} placeholder="Descripción" className="border p-2" />
         </div>
       ))}
-      <button
-        onClick={() => addField("trabajos", { trabajo: "", cantidad: "" })}
-        className="mb-4 px-4 py-1 bg-blue-500 text-white rounded"
-      >
-        Agregar Trabajo
-      </button>
+      <button onClick={() => addField("trabajos")} className="mb-4 px-4 py-1 bg-blue-500 text-white rounded">Agregar Trabajo</button>
 
       <h2 className="font-semibold mb-2">3. Observaciones Generales</h2>
-      <textarea
-        name="observaciones"
-        value={form.observaciones}
-        onChange={handleInputChange}
-        className="w-full border p-2 mb-4"
-        rows="4"
-      ></textarea>
+      <textarea name="observaciones" value={form.observaciones} onChange={handleInputChange} className="w-full border p-2 mb-4" rows="3" />
 
-      <button
-        onClick={generatePDF}
-        className="bg-green-600 text-white px-6 py-2 rounded hover:bg-green-700 ml-4"
-      >
+      <h2 className="font-semibold mb-2">4. Ubicaciones</h2>
+      <textarea name="ubicaciones" value={form.ubicaciones} onChange={handleInputChange} className="w-full border p-2 mb-4" rows="3" />
+
+      <button onClick={generatePDF} className="bg-green-600 text-white px-6 py-2 rounded hover:bg-green-700">
         Descargar PDF
-      </button>
-      <button
-        onClick={() => generarWord(form)}
-        className="px-4 py-2 bg-green-600 text-white rounded hover:bg-green-700 ml-4"
-      >
-        Descargar Word
       </button>
     </div>
   );
 }
+
+// export default FormularioTrabajoTecnico ;

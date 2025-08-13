@@ -5,7 +5,7 @@ import Equipos from './pages/Equipos';
 import Header from './components/Header.jsx';
 import Footer from './components/Footer.jsx';
 import FormularioTrabajoTecnico from './components/FormularioTrabajoTecnico.jsx';
-import FormularioTrabajoTecnicoWord from './components/FormularioTrabajoTecnicoWord.jsx';
+
 
 function App() {
   return (
@@ -15,7 +15,6 @@ function App() {
         {/* Agrega las rutas */}
         <Route path="/" element={<Home />} />
         <Route path="/formulariotrabajotecnico" element={<FormularioTrabajoTecnico />} />
-        <Route path="/formulariotrabajotecnicoword" element={<FormularioTrabajoTecnicoWord />} />
       </Routes>
       {/* prueba formulario en pagina de inicio, despues cambiarlo a una pagina */}
       <FormularioTrabajoTecnico/>
