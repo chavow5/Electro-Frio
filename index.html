@@ -1,13 +1,905 @@
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Electro Frio</title>
-  </head>
-  <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.jsx"></script>
-  </body>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+  <title>ElectroFrio — Servicios de Electricidad y Refrigeración | La Rioja</title>
+  <meta name="description" content="ElectroFrio ofrece servicios integrales de electricidad y refrigeración en La Rioja. Técnicos certificados en instalación, mantenimiento y reparación de aires acondicionados, heladeras comerciales e instalaciones eléctricas." />
+  <meta name="keywords" content="electricidad La Rioja, refrigeración La Rioja, aire acondicionado, heladera comercial, técnico electricista, instalaciones eléctricas, mantenimiento preventivo, ElectroFrio" />
+  <meta name="author" content="ElectroFrio" />
+  <meta name="robots" content="index, follow" />
+
+  <!-- Open Graph -->
+  <meta property="og:title"       content="ElectroFrio — Servicios de Electricidad y Refrigeración" />
+  <meta property="og:description" content="Técnicos certificados. Atención residencial y comercial en La Rioja." />
+  <meta property="og:type"        content="website" />
+  <meta property="og:locale"      content="es_AR" />
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="/logo-Electrofrio.png" />
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+
+  <!-- Font Awesome 6 -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+
+  <!-- Swiper CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+
+  <!-- Estilos propios -->
+  <link rel="stylesheet" href="/assets/css/style.css" />
+</head>
+<body>
+
+<!-- ============================================================
+     WHATSAPP FLOTANTE
+     ============================================================ -->
+<div class="wa-float">
+  <a class="wa-float-btn" href="https://wa.me/5493804349027" target="_blank" rel="noopener" title="Contactar por WhatsApp">
+    <span class="wa-float-icon"><i class="fa-brands fa-whatsapp"></i></span>
+    <span class="wa-float-label">Escribinos al WhatsApp</span>
+  </a>
+</div>
+
+<!-- ============================================================
+     OFFCANVAS OVERLAY
+     ============================================================ -->
+<div id="offcanvas-overlay" class="offcanvas-overlay"></div>
+
+<!-- ============================================================
+     OFFCANVAS MENU (MÓVIL)
+     ============================================================ -->
+<nav id="offcanvas" class="offcanvas" aria-label="Menú principal">
+  <div class="offcanvas-head">
+    <div class="logo">
+      <img src="/logo-Electrofrio.png" alt="ElectroFrio" />
+    </div>
+    <button class="offcanvas-close" aria-label="Cerrar menú">
+      <i class="fa-solid fa-xmark"></i>
+    </button>
+  </div>
+
+  <div class="offcanvas-body">
+    <ul class="offcanvas-nav">
+      <li><a href="#inicio">    <i class="fa-solid fa-house fa-fw"></i>    Inicio</a></li>
+      <li><a href="#servicios"> <i class="fa-solid fa-gear fa-fw"></i>     Servicios</a></li>
+      <li><a href="#trabajos">  <i class="fa-solid fa-images fa-fw"></i>   Trabajos</a></li>
+      <li><a href="#testimonios"><i class="fa-solid fa-star fa-fw"></i>    Testimonios</a></li>
+      <li><a href="#contacto">  <i class="fa-solid fa-envelope fa-fw"></i> Contacto</a></li>
+    </ul>
+
+    <div class="offcanvas-divider"></div>
+
+    <div class="offcanvas-contact-info">
+      <a href="https://wa.me/5493804349027" target="_blank" rel="noopener">
+        <i class="fa-brands fa-whatsapp fa-fw"></i> 380 434-9027
+      </a>
+      <a href="https://maps.app.goo.gl/xxxx" target="_blank" rel="noopener">
+        <i class="fa-solid fa-location-dot fa-fw"></i> San Martín 375, La Rioja
+      </a>
+      <a href="https://www.facebook.com/electrofriolr" target="_blank" rel="noopener">
+        <i class="fa-brands fa-facebook fa-fw"></i> /electrofriolr
+      </a>
+      <a href="https://www.instagram.com/electrofriolr" target="_blank" rel="noopener">
+        <i class="fa-brands fa-instagram fa-fw"></i> @ElectrofrioLr
+      </a>
+    </div>
+  </div>
+
+  <div class="offcanvas-footer">
+    <a href="https://wa.me/5493804349027" class="btn btn-wa btn-lg" target="_blank" rel="noopener">
+      <i class="fa-brands fa-whatsapp"></i> Contactar ahora
+    </a>
+  </div>
+</nav>
+
+<!-- ============================================================
+     HEADER
+     ============================================================ -->
+<header id="main-header">
+  <div class="container header-inner">
+
+    <!-- Logo -->
+    <a href="#inicio" class="logo">
+      <img src="/logo-Electrofrio.png" alt="ElectroFrio" />
+    </a>
+
+    <!-- Nav escritorio -->
+    <nav class="main-nav" aria-label="Navegación principal">
+      <a href="#inicio">Inicio</a>
+      <a href="#servicios">Servicios</a>
+      <a href="#trabajos">Trabajos</a>
+      <a href="#testimonios">Testimonios</a>
+      <a href="#contacto">Contacto</a>
+    </nav>
+
+    <!-- Acciones -->
+    <div class="header-actions">
+      <a href="https://wa.me/5493804349027" class="header-wa-btn" target="_blank" rel="noopener">
+        <i class="fa-brands fa-whatsapp"></i>
+        <span>Contactar</span>
+      </a>
+      <button class="hamburger" aria-label="Abrir menú" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+
+  </div>
+</header>
+
+<!-- ============================================================
+     HERO
+     ============================================================ -->
+<section id="inicio">
+  <div id="hero">
+    <!-- Fondo: video con fallback a imagen -->
+    <div class="hero-bg">
+      <video
+        class="hero-video"
+        autoplay
+        muted
+        loop
+        playsinline
+        poster="/fondo1.png"
+        aria-hidden="true"
+      >
+        <source src="/img/0903.mp4" type="video/mp4" />
+        <img src="/fondo1.png" alt="ElectroFrio — Servicios de electricidad y refrigeración" />
+      </video>
+    </div>
+    <div class="hero-overlay"></div>
+    <div class="hero-grid"></div>
+
+    <!-- Swiper de textos rotantes -->
+    <div class="hero-content">
+      <div class="swiper swiper-hero">
+        <div class="swiper-wrapper">
+
+          <!-- Slide 1 -->
+          <div class="swiper-slide hero-slide">
+            <span class="hero-badge"><i class="fa-brands fa-whatsapp"></i> Atención por WhatsApp</span>
+            <h1 class="hero-title">
+              Venta y servicios en<br>
+              <span class="neon-accent">electricidad y refrigeración</span>
+            </h1>
+            <p class="hero-desc">
+              Reparación de aires acondicionados, service, instalaciones y mantenimiento integral. Consultanos directo por WhatsApp con respuesta rápida.
+            </p>
+            <div class="hero-cta">
+              <a href="https://wa.me/5493804349027?text=Hola!%20Quisiera%20hacer%20una%20consulta%20sobre%20sus%20servicios." class="btn btn-wa btn-lg" target="_blank" rel="noopener">
+                <i class="fa-brands fa-whatsapp"></i> Atención por WhatsApp
+              </a>
+              <a href="#servicios" class="btn btn-primary btn-lg">
+                <i class="fa-solid fa-gear"></i> Ver servicios
+              </a>
+            </div>
+          </div>
+
+          <!-- Slide 2 -->
+          <div class="swiper-slide hero-slide">
+            <span class="hero-badge"><i class="fa-solid fa-snowflake"></i> Climatización y Service</span>
+            <h1 class="hero-title">
+              Reparación de aires acondicionados<br>
+              <span class="neon-accent">service y mantenimiento</span>
+            </h1>
+            <p class="hero-desc">
+              Limpieza profunda, recarga de gas y solución a fallas eléctricas con técnicos certificados en La Rioja.
+            </p>
+            <div class="hero-cta">
+              <a href="https://wa.me/5493804349027?text=Hola!%20Necesito%20reparación%20o%20service%20de%20aire%20acondicionado." class="btn btn-wa btn-lg" target="_blank" rel="noopener">
+                <i class="fa-brands fa-whatsapp"></i> Consultar por WhatsApp
+              </a>
+              <a href="#contacto" class="btn btn-white btn-lg">
+                <i class="fa-solid fa-calendar-check"></i> Solicitar presupuesto
+              </a>
+            </div>
+          </div>
+
+          <!-- Slide 3 -->
+          <div class="swiper-slide hero-slide">
+            <span class="hero-badge"><i class="fa-solid fa-bolt"></i> Instalaciones y Frío Comercial</span>
+            <h1 class="hero-title">
+              Instalaciones eléctricas<br>
+              y <span class="neon-accent">refrigeración comercial</span>
+            </h1>
+            <p class="hero-desc">
+              Soluciones para hogares, locales y empresas. Mat. CACAAV Nº&nbsp;00-17284 con garantía en cada trabajo.
+            </p>
+            <div class="hero-cta">
+              <a href="https://wa.me/5493804349027?text=Hola!%20Quisiera%20consultar%20por%20instalaciones%20eléctricas%20o%20refrigeración." class="btn btn-wa btn-lg" target="_blank" rel="noopener">
+                <i class="fa-brands fa-whatsapp"></i> Hablar con un técnico
+              </a>
+              <a href="#trabajos" class="btn btn-primary btn-lg">
+                <i class="fa-solid fa-images"></i> Ver trabajos
+              </a>
+            </div>
+          </div>
+
+        </div><!-- /swiper-wrapper -->
+
+        <!-- Paginación -->
+        <div class="swiper-pagination" style="bottom:2rem;"></div>
+      </div><!-- /swiper -->
+    </div><!-- /hero-content -->
+  </div>
+</section>
+
+<!-- ============================================================
+     QUICK CONTACT BAR
+     ============================================================ -->
+<div class="quick-bar">
+  <div class="container quick-bar-inner">
+    <div class="quick-items">
+      <div class="quick-item">
+        <i class="fa-solid fa-location-dot"></i>
+        <span>San Martín 375, La Rioja</span>
+      </div>
+      <div class="quick-item">
+        <i class="fa-brands fa-whatsapp"></i>
+        <a href="https://wa.me/5493804349027" target="_blank" rel="noopener">380 434-9027</a>
+      </div>
+      <div class="quick-item">
+        <i class="fa-solid fa-clock"></i>
+        <span>Lun–Vie 8:00–18:00 · Sáb 9:00–13:00</span>
+      </div>
+    </div>
+    <div class="social-row">
+      <a href="https://www.facebook.com/electrofriolr" target="_blank" rel="noopener" aria-label="Facebook">
+        <i class="fa-brands fa-facebook-f"></i>
+      </a>
+      <a href="https://www.instagram.com/electrofriolr" target="_blank" rel="noopener" aria-label="Instagram">
+        <i class="fa-brands fa-instagram"></i>
+      </a>
+      <a href="https://wa.me/5493804349027" target="_blank" rel="noopener" aria-label="WhatsApp">
+        <i class="fa-brands fa-whatsapp"></i>
+      </a>
+    </div>
+  </div>
+</div>
+
+<!-- ============================================================
+     DIFERENCIALES — Por qué elegirnos
+     ============================================================ -->
+<section id="diferenciales" class="section">
+  <div class="container">
+    <div class="text-center fade-up">
+      <span class="eyebrow">¿Por qué elegirnos?</span>
+      <h2 class="section-title">Lo que nos hace <span class="accent">diferentes</span></h2>
+      <p class="section-desc">Más de una década brindando servicios de calidad en electricidad y refrigeración. Nuestro compromiso es con vos.</p>
+    </div>
+
+    <div class="grid-diferenciales">
+      <div class="card-dif fade-up d1">
+        <div class="dif-icon"><i class="fa-solid fa-certificate"></i></div>
+        <h3>Técnicos certificados</h3>
+        <p>Personal habilitado con matrícula CACAAV Nº&nbsp;00-17284. Trabajamos con normas de seguridad eléctrica y frigorífica.</p>
+      </div>
+      <div class="card-dif fade-up d2">
+        <div class="dif-icon"><i class="fa-solid fa-clock-rotate-left"></i></div>
+        <h3>Más de 10 años de experiencia</h3>
+        <p>Resolvimos cientos de instalaciones y reparaciones residenciales y comerciales en toda La Rioja.</p>
+      </div>
+      <div class="card-dif fade-up d3">
+        <div class="dif-icon"><i class="fa-solid fa-shield-halved"></i></div>
+        <h3>Garantía en todos los trabajos</h3>
+        <p>Cada servicio tiene garantía escrita. Si algo no funciona bien, volvemos sin costo adicional.</p>
+      </div>
+      <div class="card-dif fade-up d4">
+        <div class="dif-icon"><i class="fa-solid fa-bolt"></i></div>
+        <h3>Respuesta el mismo día</h3>
+        <p>Urgencias atendidas. Contactanos por WhatsApp y coordinamos la visita técnica a la brevedad.</p>
+      </div>
+      <div class="card-dif fade-up d5">
+        <div class="dif-icon"><i class="fa-solid fa-store"></i></div>
+        <h3>Atención residencial y comercial</h3>
+        <p>Hogares, locales gastronómicos, supermercados, industrias. Nos adaptamos a cada necesidad.</p>
+      </div>
+      <div class="card-dif fade-up d6">
+        <div class="dif-icon"><i class="fa-solid fa-file-invoice-dollar"></i></div>
+        <h3>Presupuesto sin cargo</h3>
+        <p>Evaluamos tu situación y te entregamos un presupuesto claro y detallado sin compromiso de contratación.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="neon-divider"></div>
+
+<!-- ============================================================
+     SERVICIOS
+     ============================================================ -->
+<section id="servicios" class="section">
+  <div class="container">
+    <div class="text-center fade-up">
+      <span class="eyebrow">Nuestras especialidades</span>
+      <h2 class="section-title">Conocé nuestra <span class="accent">línea de servicios</span></h2>
+      <p class="section-desc">Soluciones integrales y profesionales en electricidad y refrigeración. Tu confort y seguridad en manos expertas.</p>
+    </div>
+  </div>
+
+  <div class="container container-wide">
+    <div class="servicios-wrap fade-up">
+      <div class="swiper swiper-servicios">
+        <div class="swiper-wrapper">
+
+          <!-- Servicio 1 -->
+          <div class="swiper-slide">
+            <div class="card-servicio">
+              <div class="card-srv-bg">
+                <img src="/img/reaparo-aire.png" alt="Servicio técnico de aires acondicionados" />
+              </div>
+              <div class="card-srv-overlay">
+                <div class="srv-neon-bar"></div>
+                <h3>Servicio técnico integral</h3>
+                <p>Diagnóstico preciso y reparación de equipos eléctricos y de refrigeración con repuestos de calidad.</p>
+                <a href="#contacto" class="btn btn-primary">Solicitar <i class="fa-solid fa-arrow-right"></i></a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Servicio 2 -->
+          <div class="swiper-slide">
+            <div class="card-servicio">
+              <div class="card-srv-bg">
+                <img src="/img/Spending a little bit now can help you save a lot….jpg" alt="Instalaciones y mantenimiento" />
+              </div>
+              <div class="card-srv-overlay">
+                <div class="srv-neon-bar"></div>
+                <h3>Instalaciones y mantenimiento</h3>
+                <p>Instalación de aires acondicionados, tableros eléctricos, termotanques y sistemas de climatización.</p>
+                <a href="#contacto" class="btn btn-primary">Solicitar <i class="fa-solid fa-arrow-right"></i></a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Servicio 3 -->
+          <div class="swiper-slide">
+            <div class="card-servicio">
+              <div class="card-srv-bg">
+                <img src="/img/Descubre nuestra variedad de bombillas….jpg" alt="Soporte técnico especializado" />
+              </div>
+              <div class="card-srv-overlay">
+                <div class="srv-neon-bar"></div>
+                <h3>Soporte técnico especializado</h3>
+                <p>Asesoramiento y soporte experto para resolver cualquier falla eléctrica o de refrigeración rápidamente.</p>
+                <a href="#contacto" class="btn btn-primary">Solicitar <i class="fa-solid fa-arrow-right"></i></a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Servicio 4 -->
+          <div class="swiper-slide">
+            <div class="card-servicio">
+              <div class="card-srv-bg">
+                <img src="/img/¡Dale un toque de modernidad a tu hogar con….jpg" alt="Instalaciones eléctricas modernas" />
+              </div>
+              <div class="card-srv-overlay">
+                <div class="srv-neon-bar"></div>
+                <h3>Mantenimiento comercial</h3>
+                <p>Contratos de mantenimiento preventivo para locales, restaurantes, supermercados y negocios.</p>
+                <a href="#contacto" class="btn btn-primary">Solicitar <i class="fa-solid fa-arrow-right"></i></a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Servicio 5 -->
+          <div class="swiper-slide">
+            <div class="card-servicio">
+              <div class="card-srv-bg">
+                <img src="/img/New Pol Antrasit Çim Aydınlatma.jpg" alt="Instalaciones de iluminación exterior" />
+              </div>
+              <div class="card-srv-overlay">
+                <div class="srv-neon-bar"></div>
+                <h3>Servicio técnico en refrigeración</h3>
+                <p>Reparación y mantenimiento de heladeras comerciales, cámaras de frío, vitrinas y equipos frigoríficos.</p>
+                <a href="#contacto" class="btn btn-primary">Solicitar <i class="fa-solid fa-arrow-right"></i></a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Servicio 6 -->
+          <div class="swiper-slide">
+            <div class="card-servicio">
+              <div class="card-srv-bg">
+                <img src="/img/03bb3af3-42fd-4543-b3e9-83c321df7deb.jpg" alt="Instalaciones y reparaciones eléctricas" />
+              </div>
+              <div class="card-srv-overlay">
+                <div class="srv-neon-bar"></div>
+                <h3>Reparación, instalación y service</h3>
+                <p>Atendemos cualquier falla eléctrica o de frío. Desde un tomacorriente hasta instalaciones industriales completas.</p>
+                <a href="#contacto" class="btn btn-primary">Solicitar <i class="fa-solid fa-arrow-right"></i></a>
+              </div>
+            </div>
+          </div>
+
+        </div><!-- /swiper-wrapper -->
+
+        <!-- Controles -->
+        <div class="swiper-pagination" style="bottom:0;"></div>
+        <div class="swiper-button-prev swiper-srv-prev"></div>
+        <div class="swiper-button-next swiper-srv-next"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     BANNER DESTACADO — Mantenimiento Preventivo
+     ============================================================ -->
+<section id="banner-destacado" class="section">
+  <div class="container">
+    <div class="banner-card fade-up">
+      <div class="banner-bg">
+        <img src="/img/reaparo-aire.png" alt="Mantenimiento preventivo de aires acondicionados" />
+      </div>
+      <div class="banner-overlay"></div>
+      <div class="banner-content">
+        <span class="banner-eyebrow"><i class="fa-solid fa-star"></i> &nbsp;Servicio estrella</span>
+        <h2 class="banner-title">
+          Mantenimiento preventivo<br>
+          de <span class="accent">aires acondicionados</span>
+        </h2>
+        <p class="banner-desc">
+          Limpieza, carga de gas, revisión eléctrica y control de rendimiento. Extendé la vida útil de tu equipo y ahorrá en energía.
+        </p>
+        <div class="banner-features">
+          <div class="banner-feature"><i class="fa-solid fa-check"></i> Limpieza profunda</div>
+          <div class="banner-feature"><i class="fa-solid fa-check"></i> Carga de gas</div>
+          <div class="banner-feature"><i class="fa-solid fa-check"></i> Revisión eléctrica</div>
+          <div class="banner-feature"><i class="fa-solid fa-check"></i> Garantía incluida</div>
+        </div>
+        <a href="https://wa.me/5493804349027?text=Hola!%20Quiero%20información%20sobre%20el%20mantenimiento%20preventivo%20de%20aire%20acondicionado." class="btn btn-primary btn-lg" target="_blank" rel="noopener">
+          <i class="fa-brands fa-whatsapp"></i> Consultar ahora
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     TRABAJOS REALIZADOS
+     ============================================================ -->
+<section id="trabajos" class="section">
+  <div class="container">
+    <div class="text-center fade-up">
+      <span class="eyebrow">Galería</span>
+      <h2 class="section-title">Algunos de nuestros <span class="accent">trabajos realizados</span></h2>
+      <p class="section-desc">Cada trabajo es una muestra de nuestro compromiso con la calidad y el profesionalismo.</p>
+    </div>
+  </div>
+
+  <div class="container container-wide">
+    <div class="trabajos-wrap fade-up">
+      <div class="swiper swiper-trabajos">
+        <div class="swiper-wrapper">
+
+          <div class="swiper-slide">
+            <div class="card-trabajo">
+              <div class="card-trabajo-media">
+                <img src="/img/reaparo-aire.png" alt="Reparación de aire acondicionado" />
+              </div>
+              <div class="card-trabajo-info">
+                <h4>Reparación de A/C</h4>
+                <span>Servicio técnico residencial</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="swiper-slide">
+            <div class="card-trabajo">
+              <div class="card-trabajo-media">
+                <img src="/img/Spending a little bit now can help you save a lot….jpg" alt="Mantenimiento preventivo industrial" />
+              </div>
+              <div class="card-trabajo-info">
+                <h4>Mantenimiento preventivo</h4>
+                <span>Equipo industrial — La Rioja</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="swiper-slide">
+            <div class="card-trabajo">
+              <div class="card-trabajo-media">
+                <img src="/img/03bb3af3-42fd-4543-b3e9-83c321df7deb.jpg" alt="Instalación de iluminación exterior" />
+              </div>
+              <div class="card-trabajo-info">
+                <h4>Iluminación exterior</h4>
+                <span>Instalación residencial</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="swiper-slide">
+            <div class="card-trabajo">
+              <div class="card-trabajo-media">
+                <img src="/img/New Pol Antrasit Çim Aydınlatma.jpg" alt="Iluminación de jardín nocturna" />
+              </div>
+              <div class="card-trabajo-info">
+                <h4>Iluminación de jardín</h4>
+                <span>Instalación exterior — La Rioja</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="swiper-slide">
+            <div class="card-trabajo">
+              <div class="card-trabajo-media">
+                <img src="/img/fb4072d5-f21d-4f05-8e3b-4cb126f26778.jpg" alt="Iluminación decorativa exterior" />
+              </div>
+              <div class="card-trabajo-info">
+                <h4>Iluminación decorativa</h4>
+                <span>Espacio exterior — La Rioja</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="swiper-slide">
+            <div class="card-trabajo">
+              <div class="card-trabajo-media">
+                <img src="/img/Descubre nuestra variedad de bombillas….jpg" alt="Instalación de iluminación inteligente" />
+              </div>
+              <div class="card-trabajo-info">
+                <h4>Iluminación inteligente</h4>
+                <span>Instalación residencial</span>
+              </div>
+            </div>
+          </div>
+
+        </div><!-- /swiper-wrapper -->
+
+        <div class="swiper-pagination" style="bottom:0;"></div>
+        <div class="swiper-button-prev swiper-trb-prev"></div>
+        <div class="swiper-button-next swiper-trb-next"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     BANNER SOLICITAR SERVICIO
+     ============================================================ -->
+<section id="banner-servicio" class="section">
+  <div class="container">
+    <div class="bsrv-inner fade-up">
+      <div class="bsrv-text">
+        <span class="eyebrow">Servicio técnico y posventa</span>
+        <h2>¿Necesitás <span class="accent">reparar o instalar</span><br>tu equipo?</h2>
+        <p>Estamos para ayudarte. Coordinamos una visita técnica y te entregamos un presupuesto claro y sin cargos ocultos.</p>
+      </div>
+      <div class="bsrv-cta">
+        <a href="https://wa.me/5493804349027?text=Hola!%20Necesito%20un%20servicio%20técnico." class="btn btn-wa btn-lg" target="_blank" rel="noopener">
+          <i class="fa-brands fa-whatsapp"></i> Escribir por WhatsApp
+        </a>
+        <a href="#contacto" class="btn btn-outline btn-lg">
+          <i class="fa-solid fa-calendar-check"></i> Agendar visita
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     TESTIMONIOS
+     ============================================================ -->
+<section id="testimonios" class="section">
+  <div class="container">
+    <div class="text-center fade-up">
+      <span class="eyebrow">Lo que dicen nuestros clientes</span>
+      <h2 class="section-title">La <span class="accent">experiencia ElectroFrio</span></h2>
+    </div>
+
+    <div class="grid-testimonios">
+
+      <div class="card-test fade-up d1">
+        <div class="quote-mark">"</div>
+        <div class="stars">
+          <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+          <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+          <i class="fa-solid fa-star"></i>
+        </div>
+        <blockquote>Excelente servicio. Vinieron rápido y solucionaron el problema del aire acondicionado en una sola visita. Muy prolijos y profesionales. ¡100% recomendados!</blockquote>
+        <div class="test-author">
+          <div class="author-avatar"><i class="fa-solid fa-user"></i></div>
+          <div>
+            <p class="author-name">Marcela G.</p>
+            <p class="author-label">Cliente residencial — La Rioja</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="card-test fade-up d2">
+        <div class="quote-mark">"</div>
+        <div class="stars">
+          <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+          <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+          <i class="fa-solid fa-star"></i>
+        </div>
+        <blockquote>Arreglaron la heladera de mi local en pocas horas. Sin ElectroFrio perdía toda la mercadería. Técnicos muy eficientes y con precios justos.</blockquote>
+        <div class="test-author">
+          <div class="author-avatar"><i class="fa-solid fa-user"></i></div>
+          <div>
+            <p class="author-name">Carlos P.</p>
+            <p class="author-label">Dueño de local — La Rioja</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="card-test fade-up d3">
+        <div class="quote-mark">"</div>
+        <div class="stars">
+          <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+          <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+          <i class="fa-solid fa-star"></i>
+        </div>
+        <blockquote>Contraté el plan de mantenimiento anual y es lo mejor que hice. Mis equipos rinden mejor y el técnico siempre llega puntual. Muy buena atención.</blockquote>
+        <div class="test-author">
+          <div class="author-avatar"><i class="fa-solid fa-user"></i></div>
+          <div>
+            <p class="author-name">Laura M.</p>
+            <p class="author-label">Administradora — La Rioja</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<div class="neon-divider"></div>
+
+<!-- ============================================================
+     CONTACTO
+     ============================================================ -->
+<section id="contacto" class="section">
+  <div class="container">
+    <div class="text-center fade-up">
+      <span class="eyebrow">Contacto</span>
+      <h2 class="section-title">¿Necesitás ayuda con tus <span class="accent">equipos?</span></h2>
+      <p class="section-desc">Completá el formulario y te enviamos el mensaje directo a WhatsApp para una atención rápida y personalizada.</p>
+    </div>
+
+    <div class="contacto-grid fade-up">
+
+      <!-- Información -->
+      <div class="contacto-info">
+        <!-- Mapa embebido -->
+        <div class="map-embed">
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3444.0!2d-66.8519!3d-29.4118!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMjnCsDI0JzQyLjUiUyA2NsKwNTEnMDYuOCJX!5e0!3m2!1ses!2sar!4v1234567890"
+            width="600" height="220"
+            style="border:0;" allowfullscreen="" loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+            title="Ubicación ElectroFrio La Rioja">
+          </iframe>
+        </div>
+
+        <div class="info-block">
+          <div class="info-icon"><i class="fa-solid fa-location-dot"></i></div>
+          <div>
+            <span class="info-label">Dirección</span>
+            <span class="info-value">San Martín 375 — La Rioja, Argentina</span>
+          </div>
+        </div>
+
+        <div class="info-block">
+          <div class="info-icon"><i class="fa-brands fa-whatsapp"></i></div>
+          <div>
+            <span class="info-label">WhatsApp</span>
+            <span class="info-value">
+              <a href="https://wa.me/5493804349027" target="_blank" rel="noopener">380 434-9027</a>
+            </span>
+          </div>
+        </div>
+
+        <div class="info-block">
+          <div class="info-icon"><i class="fa-solid fa-clock"></i></div>
+          <div>
+            <span class="info-label">Horario de atención</span>
+            <span class="info-value">Lun–Vie 8:00–18:00 · Sáb 9:00–13:00</span>
+          </div>
+        </div>
+
+        <div class="info-block">
+          <div class="info-icon"><i class="fa-solid fa-certificate"></i></div>
+          <div>
+            <span class="info-label">Habilitación</span>
+            <span class="info-value">Mat. CACAAV Nº 00-17284</span>
+          </div>
+        </div>
+
+        <div class="sociales-row">
+          <a class="social-ico" href="https://www.facebook.com/electrofriolr" target="_blank" rel="noopener" aria-label="Facebook">
+            <i class="fa-brands fa-facebook-f"></i>
+          </a>
+          <a class="social-ico" href="https://www.instagram.com/electrofriolr" target="_blank" rel="noopener" aria-label="Instagram">
+            <i class="fa-brands fa-instagram"></i>
+          </a>
+          <a class="social-ico" href="https://wa.me/5493804349027" target="_blank" rel="noopener" aria-label="WhatsApp">
+            <i class="fa-brands fa-whatsapp"></i>
+          </a>
+        </div>
+      </div>
+
+      <!-- Formulario -->
+      <div class="contacto-form-wrap">
+        <h3 class="form-title"><i class="fa-brands fa-whatsapp" style="color:var(--neon);margin-right:.5rem;"></i>Enviar consulta por WhatsApp</h3>
+
+        <form id="form-contacto" novalidate>
+          <div class="form-group">
+            <label class="form-label" for="nombre">Nombre completo *</label>
+            <input class="form-control" type="text" id="nombre" name="nombre" placeholder="Ej: Juan Pérez" required />
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="telefono">Teléfono (opcional)</label>
+            <input class="form-control" type="tel" id="telefono" name="telefono" placeholder="Ej: 380 123-4567" />
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="servicio">Servicio de interés</label>
+            <select class="form-control" id="servicio" name="servicio">
+              <option value="">Seleccioná un servicio...</option>
+              <option>Servicio técnico integral</option>
+              <option>Instalación de aire acondicionado</option>
+              <option>Mantenimiento preventivo</option>
+              <option>Reparación de heladera comercial</option>
+              <option>Instalación eléctrica</option>
+              <option>Mantenimiento comercial</option>
+              <option>Otro / consulta general</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="mensaje">Descripción de tu consulta *</label>
+            <textarea class="form-control" id="mensaje" name="mensaje" placeholder="Describí brevemente qué servicio necesitás o el problema de tu equipo..." required></textarea>
+          </div>
+          <button type="submit" class="btn btn-wa btn-lg form-submit">
+            <i class="fa-brands fa-whatsapp"></i> Enviar por WhatsApp
+          </button>
+        </form>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     SECCIÓN DE CONTACTO FINAL (Estilo Grivelli)
+     ============================================================ -->
+<section id="contacto-final" class="section-sm">
+  <div class="container">
+    <div class="cf-inner fade-up">
+      <div class="cf-icon" aria-hidden="true">
+        <i class="fa-solid fa-headset"></i>
+      </div>
+      <div class="cf-text">
+        <h2>Desde La Rioja brindamos <span class="accent">un servicio<br>de excelencia</span></h2>
+        <p>Encontraremos la mejor solución para vos. Contactate por teléfono, WhatsApp o redes sociales.</p>
+
+        <div class="cf-phone">
+          <i class="fa-brands fa-whatsapp"></i>
+          <a href="https://wa.me/5493804349027">380 434-9027</a>
+        </div>
+
+        <div style="display:flex;gap:2rem;flex-wrap:wrap;margin-bottom:1.5rem;">
+          <div class="cf-address">
+            <i class="fa-solid fa-location-dot"></i>
+            <p><strong>Encontranos en:</strong><br>San Martín 375<br>La Rioja, Argentina</p>
+          </div>
+          <div class="cf-address">
+            <i class="fa-solid fa-clock"></i>
+            <p><strong>Horarios:</strong><br>Lun–Vie 8:00–18:00<br>Sáb 9:00–13:00</p>
+          </div>
+        </div>
+
+        <div class="cf-sociales">
+          <a href="https://www.facebook.com/electrofriolr" target="_blank" rel="noopener" aria-label="Facebook">
+            <i class="fa-brands fa-facebook-f"></i>
+          </a>
+          <a href="https://www.instagram.com/electrofriolr" target="_blank" rel="noopener" aria-label="Instagram">
+            <i class="fa-brands fa-instagram"></i>
+          </a>
+          <a href="https://wa.me/5493804349027" target="_blank" rel="noopener" aria-label="WhatsApp">
+            <i class="fa-brands fa-whatsapp"></i>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     FOOTER
+     ============================================================ -->
+<div class="neon-bar"></div>
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+
+      <!-- Columna 1 — Marca -->
+      <div>
+        <div class="footer-logo">
+          <img src="/logo-Electrofrio.png" alt="ElectroFrio" />
+        </div>
+        <p class="footer-desc">
+          Empresa riojana dedicada a servicios de electricidad y refrigeración desde hace más de una década. Mat. CACAAV Nº&nbsp;00-17284.
+        </p>
+        <div class="footer-sociales">
+          <a href="https://www.facebook.com/electrofriolr" target="_blank" rel="noopener" aria-label="Facebook">
+            <i class="fa-brands fa-facebook-f"></i>
+          </a>
+          <a href="https://www.instagram.com/electrofriolr" target="_blank" rel="noopener" aria-label="Instagram">
+            <i class="fa-brands fa-instagram"></i>
+          </a>
+          <a href="https://wa.me/5493804349027" target="_blank" rel="noopener" aria-label="WhatsApp">
+            <i class="fa-brands fa-whatsapp"></i>
+          </a>
+        </div>
+      </div>
+
+      <!-- Columna 2 — Servicios -->
+      <div class="footer-col">
+        <h5>Servicios</h5>
+        <ul class="footer-links">
+          <li><a href="#servicios"><i class="fa-solid fa-chevron-right"></i> Servicio técnico integral</a></li>
+          <li><a href="#servicios"><i class="fa-solid fa-chevron-right"></i> Instalaciones y mantenimiento</a></li>
+          <li><a href="#servicios"><i class="fa-solid fa-chevron-right"></i> Mantenimiento preventivo A/C</a></li>
+          <li><a href="#servicios"><i class="fa-solid fa-chevron-right"></i> Refrigeración comercial</a></li>
+          <li><a href="#servicios"><i class="fa-solid fa-chevron-right"></i> Instalaciones eléctricas</a></li>
+          <li><a href="#servicios"><i class="fa-solid fa-chevron-right"></i> Mantenimiento comercial</a></li>
+        </ul>
+      </div>
+
+      <!-- Columna 3 — Contacto -->
+      <div class="footer-col">
+        <h5>Contacto</h5>
+        <ul class="footer-links">
+          <li>
+            <a href="https://wa.me/5493804349027" target="_blank" rel="noopener">
+              <i class="fa-brands fa-whatsapp"></i> 380 434-9027
+            </a>
+          </li>
+          <li>
+            <a href="#">
+              <i class="fa-solid fa-location-dot"></i> San Martín 375 — La Rioja
+            </a>
+          </li>
+          <li>
+            <a href="#">
+              <i class="fa-solid fa-clock"></i> Lun–Vie 8:00–18:00
+            </a>
+          </li>
+          <li>
+            <a href="#">
+              <i class="fa-solid fa-clock"></i> Sáb 9:00–13:00
+            </a>
+          </li>
+        </ul>
+      </div>
+
+    </div><!-- /footer-grid -->
+
+    <div class="footer-bottom">
+      <p>© <span id="year"></span> ElectroFrio — Todos los derechos reservados.</p>
+      <p>La Rioja, Argentina · Mat. CACAAV Nº 00-17284</p>
+    </div>
+
+  </div>
+</footer>
+
+<!-- ============================================================
+     SCRIPTS
+     ============================================================ -->
+<!-- Swiper JS -->
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
+<!-- Script principal -->
+<script src="/assets/js/main.js"></script>
+
+<!-- Año dinámico en footer -->
+<script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+
+</body>
 </html>

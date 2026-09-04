@@ -31,13 +31,13 @@ export const Servicios = () => {
                 height="24"
               />
             </svg>
-            <span className="relative">The</span>
+            <span className="relative">Nuestros</span>
           </span>{' '}
-          quick, brown fox jumps over a lazy dog
+          servicios profesionales
         </h2>
         <p className="text-base text-gray-700 md:text-lg">
-          Sed ut perspiciatis unde omnis iste natus error sit voluptatem
-          accusantium doloremque rem aperiam, eaque ipsa quae.
+          Brindamos servicios de instalación, reparación y mantenimiento en
+          electricidad y refrigeración, con garantía y atención profesional.
         </p>
       </div>
       <div className="grid max-w-screen-lg mx-auto space-y-6 lg:grid-cols-2 lg:space-y-0 lg:divide-x">
@@ -62,11 +62,10 @@ export const Servicios = () => {
             </div>
             <div>
               <h6 className="mb-3 text-xl font-bold leading-5">
-                The deep ocean
+                Instalación y mantenimiento
               </h6>
               <p className="text-sm text-gray-900">
-                Webtwo ipsum orkut reddit meebo skype vimeo jajah spock empressr
-                zimbra, mobly napster.
+                Instalación, mantenimiento y puesta a punto de equipos.
               </p>
             </div>
           </div>
@@ -90,11 +89,11 @@ export const Servicios = () => {
             </div>
             <div>
               <h6 className="mb-3 text-xl font-bold leading-5">
-                When has justice
+                Reparaciones
               </h6>
               <p className="text-sm text-gray-900">
-                Lookout flogging bilge rat main sheet bilge water nipper fluke
-                to go on account heave down clap of thunder.
+                Diagnóstico y reparación de equipos de refrigeración y
+                componentes eléctricos.
               </p>
             </div>
           </div>
@@ -118,11 +117,10 @@ export const Servicios = () => {
             </div>
             <div>
               <h6 className="mb-3 text-xl font-bold leading-5">
-                Leverage agile
+                Planes de mantenimiento
               </h6>
               <p className="text-sm text-gray-900">
-                The first mate and his Skipper too will do their very best to
-                make the others comfortable.
+                Planes programados para prolongar la vida útil de tus equipos.
               </p>
             </div>
           </div>
@@ -148,11 +146,10 @@ export const Servicios = () => {
             </div>
             <div>
               <h6 className="mb-3 text-xl font-bold leading-5">
-                Organically grow
+                Instalación eléctrica
               </h6>
               <p className="text-sm text-gray-900">
-                Skate ipsum dolor sit amet, alley oop vert mute-air Colby Carter
-                flail 180 berm over the sea.
+                Instalaciones residenciales y comerciales certificadas.
               </p>
             </div>
           </div>
@@ -176,11 +173,10 @@ export const Servicios = () => {
             </div>
             <div>
               <h6 className="mb-3 text-xl font-bold leading-5">
-                Have a good one
+                Asesoramiento técnico
               </h6>
               <p className="text-sm text-gray-900">
-                Cheese on toast airedale the big cheese. Danish fontina cheesy
-                grin airedale danish fontina.
+                Asesoramiento profesional y presupuestos personalizados.
               </p>
             </div>
           </div>
@@ -204,11 +200,10 @@ export const Servicios = () => {
             </div>
             <div>
               <h6 className="mb-3 text-xl font-bold leading-5">
-                A slice of heaven
+                Suministro de repuestos
               </h6>
               <p className="text-sm text-gray-900">
-                A flower in my garden, a mystery in my panties. Heart attack
-                never stopped old Big Bear.
+                Repuestos originales y materiales de calidad para tus equipos.
               </p>
             </div>
           </div>

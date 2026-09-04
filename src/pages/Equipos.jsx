@@ -10,21 +10,21 @@ export const Equipos = () => {
       nombre: "Marta Clermont",
       rol: "Líder de Diseño",
       descripcion:
-        "Amet I love liquorice jujubes pudding croissant I love pudding.",
+        "Diseñadora creativa, apasionada por el detalle y la experiencia de usuario.",
       img: "https://images.pexels.com/photos/2381069/pexels-photo-2381069.jpeg",
     },
     {
       nombre: "Alice Melbourne",
       rol: "Recursos Humanos",
       descripcion:
-        "Lorizzle ipsum bling bling sit amizzle, consectetuer adipiscing elit.",
+        "Encargada de recursos humanos y del bienestar del equipo.",
       img: "https://images.pexels.com/photos/3747435/pexels-photo-3747435.jpeg",
     },
     {
       nombre: "John Doe",
       rol: "Buen compañero",
       descripcion:
-        "Bacon ipsum dolor sit amet salami jowl corned beef, andouille flank.",
+        "Compañero colaborador y comprometido con la calidad del trabajo.",
       img: "https://images.pexels.com/photos/3931603/pexels-photo-3931603.jpeg",
     },
   ];
@@ -33,7 +33,7 @@ export const Equipos = () => {
     <div className="px-4 py-16 mx-auto max-w-screen-xl md:px-8 lg:py-20">
       <div className="mx-auto mb-12 max-w-xl text-center">
         <p className="inline-block px-4 py-1 mb-4 text-xs font-semibold tracking-wider text-teal-900 uppercase rounded-full bg-teal-200">
-          Know Our Team
+          Nuestro equipo
         </p>
         <p className="text-base text-gray-700 md:text-lg">
           Conoce a nuestro equipo de trabajo y el rol de cada integrante.

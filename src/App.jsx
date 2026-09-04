@@ -4,9 +4,13 @@ import Equipos from './pages/Equipos';
 import About, { AboutUs } from './pages/AboutUs';
 import Header from './components/Header.jsx';
 import Footer from './components/Footer.jsx';
-import FormularioTrabajoTecnico from './pages/FormularioTrabajoTecnico.jsx';
-import Servicios from './pages/Servicios.jsx';
+import ServiciosPage from './pages/Servicios.jsx';
 import GaleriaTrabajo from './pages/GaleriaTrabajo.jsx';
+
+import Servicios from './components/Servicios.jsx';
+import Equipo from './components/Equipo.jsx';
+import WhatsAppButton from './components/WhatsAppButton.jsx';
+import Contacto from './components/Contacto.jsx';
 
 function App() {
   return (
@@ -15,19 +19,20 @@ function App() {
       <Routes>
         {/* Agrega las rutas */}
         <Route path="/" element={<Home />} />
-        <Route path="/formulariotrabajotecnico" element={<FormularioTrabajoTecnico />} />
-        <Route path="/servicios" element={<Servicios />} />
+        <Route path="/servicios" element={<ServiciosPage />} />
         <Route path="/galeria" element={<GaleriaTrabajo />} />
         <Route path="/sobrenosotros" element={<AboutUs />} />
-        
       </Routes>
-      {/* pruebas en pagina de inicio, despues cambiarlo a una ruta */}
-      <FormularioTrabajoTecnico/>
-      <Equipos/>
-      <Servicios/>
-      <GaleriaTrabajo/>
-      <AboutUs/>
+      
+      {/* Componentes de landing integrados */}
+      <Equipo />
+      <Servicios />
+      <GaleriaTrabajo />
+      <AboutUs />
+      <Contacto />
+      
       <Footer />
+      <WhatsAppButton />
     </Router>
   );
 }
