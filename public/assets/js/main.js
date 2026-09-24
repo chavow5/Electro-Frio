@@ -33,41 +33,7 @@ document.addEventListener('DOMContentLoaded', () => {
   overlay?.addEventListener('click', closeMenu);
   document.querySelectorAll('.offcanvas-nav a').forEach(a => a.addEventListener('click', closeMenu));
 
-  /* ---- HERO SWIPER ---- */
   if (typeof Swiper !== 'undefined') {
-    new Swiper('.swiper-hero', {
-      loop: true,
-      effect: 'fade',
-      fadeEffect: { crossFade: true },
-      autoplay: { delay: 7500, disableOnInteraction: false },
-      speed: 1000,
-      pagination: {
-        el: '.swiper-hero .swiper-pagination',
-        clickable: true,
-      },
-    });
-
-    /* ---- SERVICIOS SWIPER ---- */
-    new Swiper('.swiper-servicios', {
-      loop: false,
-      grabCursor: true,
-      speed: 600,
-      navigation: {
-        nextEl: '.swiper-srv-next',
-        prevEl: '.swiper-srv-prev',
-      },
-      pagination: {
-        el: '.swiper-servicios .swiper-pagination',
-        clickable: true,
-      },
-      breakpoints: {
-        0:    { slidesPerView: 1.15, spaceBetween: 14, centeredSlides: true },
-        600:  { slidesPerView: 2,    spaceBetween: 16, centeredSlides: false },
-        1024: { slidesPerView: 3,    spaceBetween: 20, centeredSlides: false },
-        1280: { slidesPerView: 3.2,  spaceBetween: 22, centeredSlides: false },
-      },
-    });
-
     /* ---- TRABAJOS SWIPER ---- */
     new Swiper('.swiper-trabajos', {
       loop: true,
@@ -95,7 +61,6 @@ document.addEventListener('DOMContentLoaded', () => {
   form?.addEventListener('submit', (e) => {
     e.preventDefault();
     const nombre   = form.querySelector('[name="nombre"]')?.value?.trim()   || '';
-    const telefono = form.querySelector('[name="telefono"]')?.value?.trim() || '';
     const servicio = form.querySelector('[name="servicio"]')?.value          || '';
     const mensaje  = form.querySelector('[name="mensaje"]')?.value?.trim()  || '';
 
@@ -105,7 +70,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     let text = `Hola! Mi nombre es *${nombre}*.`;
-    if (telefono) text += `\nTeléfono: ${telefono}`;
     if (servicio) text += `\nServicio consultado: *${servicio}*`;
     text += `\n\n*Mensaje:*\n${mensaje}`;
 
@@ -158,5 +122,38 @@ document.addEventListener('DOMContentLoaded', () => {
   }, { threshold: 0.45 });
   sections.forEach(s => spyObserver.observe(s));
 
+
+  /* ---- FAQ ACCORDION (UI/UX Pro Max) ---- */
+  const faqItems = document.querySelectorAll('.faq-item');
+  faqItems.forEach(item => {
+    const question = item.querySelector('.faq-question');
+    const answer = item.querySelector('.faq-answer');
+
+    question?.addEventListener('click', () => {
+      const isOpen = item.classList.contains('active');
+
+      // Cerrar otros acordeones para mantener orden visual
+      faqItems.forEach(other => {
+        if (other !== item && other.classList.contains('active')) {
+          other.classList.remove('active');
+          other.querySelector('.faq-question')?.setAttribute('aria-expanded', 'false');
+          const otherAnswer = other.querySelector('.faq-answer');
+          if (otherAnswer) otherAnswer.style.maxHeight = null;
+        }
+      });
+
+      if (isOpen) {
+        item.classList.remove('active');
+        question.setAttribute('aria-expanded', 'false');
+        answer.style.maxHeight = null;
+      } else {
+        item.classList.add('active');
+        question.setAttribute('aria-expanded', 'true');
+        answer.style.maxHeight = answer.scrollHeight + 'px';
+      }
+    });
+  });
+
 });
+
 

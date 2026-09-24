@@ -1,0 +1,8 @@
+User-agent: *
+Allow: /
+
+# Bloquear archivos que no necesitan indexarse
+Disallow: /assets/video/
+
+Sitemap: https://electro-frio.vercel.app/sitemap.xml
+
