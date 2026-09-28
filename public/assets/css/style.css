@@ -728,6 +728,13 @@ input,textarea,select,button { font-family:inherit; }
   margin-bottom: 0.55rem;
   line-height: 1.3;
 }
+.card-servicio h3 .srv-sub {
+  display: block;
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--neon);
+  margin-top: 0.15rem;
+}
 .card-servicio p {
   font-size: 0.86rem;
   color: rgba(255, 255, 255, 0.78);
@@ -1703,18 +1710,25 @@ footer {
     text-align: left;
   }
   .hero-cta {
-    flex-direction: column;
-    align-items: stretch;
-    width: 100%;
-    max-width: 320px;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: flex-start;
+    width: auto;
+    max-width: 100%;
     margin: 0;
-    gap: 0.65rem;
+    gap: 0.5rem;
   }
   .hero-cta .btn {
-    width: 100%;
+    width: auto;
+    flex: 0 0 auto;
     justify-content: center;
-    padding: 0.7rem 1.25rem;
-    font-size: 0.88rem;
+    padding: 0.48rem 0.95rem;
+    font-size: 0.8rem;
+    gap: 0.4rem;
+  }
+  .hero-cta .btn i {
+    font-size: 0.85em;
   }
 
   /* Ocultar flechas de Swiper en mobile (se usa swipe táctil) */
@@ -1760,6 +1774,10 @@ footer {
     line-height: 1.25;
     margin-bottom: 0.35rem;
     font-weight: 700;
+  }
+  .card-servicio h3 .srv-sub {
+    font-size: 0.72rem;
+    margin-top: 0.1rem;
   }
   .card-servicio p {
     display: block;
@@ -2003,8 +2021,8 @@ footer {
 @media (max-width: 380px) {
   .container { padding: 0 0.85rem; }
   .hero-title { font-size: 1.35rem; }
-  .hero-cta { max-width: 100%; }
-  .hero-cta .btn { font-size: 0.84rem; padding: 0.65rem 0.9rem; }
+  .hero-cta { max-width: 100%; gap: 0.4rem; }
+  .hero-cta .btn { font-size: 0.74rem; padding: 0.42rem 0.75rem; }
   .section-title { font-size: 1.4rem; }
   .contacto-form-wrap { padding: 1.2rem 0.9rem; }
   .card-servicio { height: 265px; }
@@ -2023,10 +2041,13 @@ footer {
     flex-direction: row;
     flex-wrap: wrap;
     max-width: 100%;
+    gap: 0.6rem;
   }
   .hero-cta .btn {
-    flex: 1 1 auto;
-    min-width: 140px;
+    width: auto;
+    flex: 0 0 auto;
+    padding: 0.52rem 1rem;
+    font-size: 0.84rem;
   }
   .google-header-card {
     flex-direction: row;
