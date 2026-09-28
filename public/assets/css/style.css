@@ -1556,8 +1556,10 @@ footer {
   flex-wrap:wrap; gap:0.5rem;
 }
 .footer-bottom p { font-size:0.8rem; color:var(--text-faint); }
-.footer-bottom a { font-size:0.8rem; color:var(--text-faint); }
-.footer-bottom a:hover { color:var(--neon); }
+.footer-bottom strong { color: rgba(255,255,255,0.85); font-weight:600; }
+.footer-bottom a { font-size:0.8rem; color:var(--neon); transition:var(--ease); }
+.footer-bottom a:hover { color:#fff; text-shadow:var(--glow-xs); }
+.footer-bottom a i { margin-right: 0.2rem; }
 
 /* ================================================
    WHATSAPP FLOTANTE
