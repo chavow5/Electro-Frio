@@ -265,7 +265,34 @@ input,textarea,select,button { font-family:inherit; }
   display: flex;
   align-items: center;
   gap: 0.75rem;
+.header-system-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.52rem 1.15rem;
+  background: rgba(0, 212, 255, 0.08);
+  color: var(--neon);
+  border: 1px solid var(--neon-border);
+  border-radius: 50px;
+  font-size: 0.88rem;
+  font-weight: 700;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  box-shadow: 0 0 12px rgba(0, 212, 255, 0.12);
+  transition: all 0.3s ease;
+  text-decoration: none;
 }
+.header-system-btn:hover {
+  background: var(--neon);
+  color: var(--navy-darkest);
+  border-color: var(--neon);
+  box-shadow: 0 0 20px rgba(0, 212, 255, 0.4);
+  transform: translateY(-2px);
+}
+.header-system-btn i {
+  font-size: 0.95rem;
+}
+
 .header-wa-btn {
   display: inline-flex;
   align-items: center;
@@ -1644,6 +1671,15 @@ footer {
   /* Header */
   .logo img { height: 38px; }
   .header-actions { gap: 0.5rem; }
+  .header-system-btn {
+    width: 38px;
+    height: 38px;
+    padding: 0;
+    justify-content: center;
+    border-radius: 50%;
+  }
+  .header-system-btn span { display: none; }
+  .header-system-btn i { font-size: 1rem; }
   .header-wa-btn {
     width: 38px;
     height: 38px;
