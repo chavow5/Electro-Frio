@@ -1,0 +1,253 @@
+{
+  "domain": "electrofriov2.vercel.app",
+  "audited_url": "https://electrofriov2.vercel.app/",
+  "audit_date": "2026-11-18",
+  "summary": {
+    "health_score": 65,
+    "local_seo_score": 68,
+    "business_type": "Local Service — Hybrid (Brick-and-Mortar + Service Area Business) / Home Services (Electrical & HVAC/Refrigeration)",
+    "location": "San Martín 375, La Rioja, Argentina (F5300)",
+    "top_findings": [
+      "CRITICAL: Conflicto de Canonical, Sitemap y Redirección 307 entre electro-frio.vercel.app y electrofriov2.vercel.app",
+      "HIGH: Video de fondo en Hero de 8.63 MB (fondo.mp4) con autoplay que ignora preload='none' y degrada LCP/datos móviles",
+      "HIGH: H1 y bloque Hero sin keyword geográfica ('La Rioja' está comentada en el HTML del Hero)",
+      "HIGH: Imágenes PNG sin comprimir (serv-tecnologia.png 763 KB, serv-domotica.png 710 KB, aire.png 525 KB) sin versión WebP/AVIF",
+      "HIGH: Arquitectura de página única (~480 palabras) sin landings dedicadas por servicio principal"
+    ],
+    "quick_wins": [
+      "Actualizar canonical, og:url, og:image, JSON-LD (@id, url, logo, image), robots.txt y sitemap.xml al dominio real https://electrofriov2.vercel.app/",
+      "Descomentar el badge del Hero o incluir 'en La Rioja' en el H1 para alinear intención local sobre el pliegue (above-the-fold)",
+      "Corregir el typo de marca 'ELECTROFRÍA' en la sección de reseñas (línea 722) a 'ElectroFrio'",
+      "Convertir serv-tecnologia.png, serv-domotica.png y aire.png a WebP (ahorro >1.8 MB) y agregar atributos width y height a las 17 etiquetas <img>",
+      "Unificar la URL del preload de Google Fonts (línea 46) con la hoja de estilos real (línea 52) para eliminar la doble descarga"
+    ]
+  },
+  "categories": [
+    {
+      "name": "Technical SEO",
+      "weight": 0.22,
+      "score": 54,
+      "what_works": [
+        "HTTPS activo con certificado válido y encabezado HSTS (Strict-Transport-Security: max-age=63072000; includeSubDomains; preload)",
+        "Meta robots configurado con index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1",
+        "HTML5 semántico con lang='es' y viewport correctamente declarado"
+      ],
+      "findings": [
+        {
+          "title": "Bucle de señal Canonical vs Redirección 307 (electro-frio.vercel.app ↔ electrofriov2.vercel.app)",
+          "severity": "Critical",
+          "description": "https://electro-frio.vercel.app/ devuelve HTTP 307 Temporary Redirect hacia https://electrofriov2.vercel.app/, pero index.html (línea 20), robots.txt y sitemap.xml declaran https://electro-frio.vercel.app/ como URL canónica.",
+          "recommendation": "Reemplazar todas las referencias a https://electro-frio.vercel.app/ por https://electrofriov2.vercel.app/ en index.html, public/robots.txt y public/sitemap.xml, y cambiar la redirección del dominio antiguo a 301/308 permanente."
+        },
+        {
+          "title": "Faltan encabezados HTTP de seguridad (X-Content-Type-Options, X-Frame-Options, Referrer-Policy, Permissions-Policy)",
+          "severity": "High",
+          "description": "La respuesta de Vercel solo incluye HSTS, pero carece de cabeceras de endurecimiento recomendadas.",
+          "recommendation": "Crear un archivo vercel.json en la raíz configurando X-Content-Type-Options: nosniff, X-Frame-Options: SAMEORIGIN y Referrer-Policy: strict-origin-when-cross-origin."
+        },
+        {
+          "title": "Sitemap XML con dominio cruzado y etiquetas deprecadas",
+          "severity": "Medium",
+          "description": "public/sitemap.xml apunta al dominio antiguo que redirige (307) e incluye <changefreq> y <priority>, ignorados por Google.",
+          "recommendation": "Actualizar <loc> a https://electrofriov2.vercel.app/ y eliminar <changefreq> y <priority>."
+        },
+        {
+          "title": "Preload de Google Fonts no coincide con el stylesheet cargado",
+          "severity": "Low",
+          "description": "La línea 46 hace preload de una variante de Plus Jakarta Sans distinta a la solicitada en la línea 52, provocando doble descarga.",
+          "recommendation": "Eliminar el <link rel='preload'> de la línea 46 o igualar exactamente su href al de la línea 52."
+        }
+      ]
+    },
+    {
+      "name": "Content Quality (E-E-A-T)",
+      "weight": 0.23,
+      "score": 72,
+      "what_works": [
+        "Excelente señal de E-E-A-T local en la sección Equipo: nombres completos de los directores técnicos y matrículas oficiales verificables (Mat. CACAAV N° 17284-000-20-5 y Seguridad Eléctrica Ley 10.281 N° 3339456-06900)",
+        "Preguntas frecuentes reales adaptadas a dolores locales (urgencias en heladeras comerciales, garantía escrita, medios de pago, cobertura en La Rioja)",
+        "Datos de contacto reales y consistentes (San Martín 375, WhatsApp +54 9 380 434-9027, horarios)"
+      ],
+      "findings": [
+        {
+          "title": "Arquitectura de página única limita el posicionamiento por servicio específico",
+          "severity": "High",
+          "description": "Los 6 servicios principales comparten una única URL con ~480 palabras visibles. Las páginas dedicadas por servicio son el factor #1 de SEO orgánico local y #2 de visibilidad en IA (Whitespark 2026).",
+          "recommendation": "Crear páginas o secciones extendidas indexables para los servicios de mayor margen: Refrigeración/Aires Acondicionados, Electricidad Matriculada y Frío Comercial."
+        },
+        {
+          "title": "Inconsistencia y error tipográfico en el nombre de marca ('ELECTROFRÍA')",
+          "severity": "Medium",
+          "description": "En la línea 722 aparece 'ELECTROFRÍA' en lugar de 'ElectroFrio' (además de alternar entre ElectroFrio y ElectroFrío).",
+          "recommendation": "Estandarizar la escritura de marca en todo el HTML y Schema como 'ElectroFrio' (o 'ElectroFrío')."
+        },
+        {
+          "title": "Textos de reseñas dependen 100% de JavaScript externo (Elfsight)",
+          "severity": "Medium",
+          "description": "El contenedor .elfsight-app-3dc2429b-f2c0-46b3-8af3-a3b4cf0b1aa7 carga reseñas vía cliente; crawlers sin ejecución de widgets externos no leen el contenido de las opiniones.",
+          "recommendation": "Incluir 3 a 5 reseñas destacadas renderizadas en HTML estático como respaldo/complemento del widget."
+        }
+      ]
+    },
+    {
+      "name": "On-Page SEO & SXO",
+      "weight": 0.20,
+      "score": 74,
+      "what_works": [
+        "Title tag descriptivo con marca, servicios principales, ciudad y diferencial ('Técnicos Matriculados')",
+        "Un único H1 y jerarquía H2/H3 bien estructurada en todas las secciones principales",
+        "Flujo de conversión SXO claro hacia WhatsApp con mensajes prellenados por contexto"
+      ],
+      "findings": [
+        {
+          "title": "El H1 y el Hero visible no mencionan 'La Rioja'",
+          "severity": "High",
+          "description": "El badge 'Atención Inmediata en La Rioja' en la línea 333 está comentado y el H1 dice solo 'Venta y servicios en ELECTRICIDAD y REFRIGERACIÓN'.",
+          "recommendation": "Descomentar el badge superior o añadir 'en La Rioja' dentro del H1 o subtítulo del Hero."
+        },
+        {
+          "title": "Mapa embebido en Contacto usa coordenadas/Place ID genérico roto (0x0:0x0)",
+          "severity": "Medium",
+          "description": "El iframe de Google Maps en la línea 839 contiene '1s0x0%3A0x0' y timestamp '4v1234567890' en lugar del Place ID real del negocio (ChIJ35kZlXbbJ5QRtmUPQGrDJqQ).",
+          "recommendation": "Actualizar el src del iframe con el embed oficial del perfil de Google Business de ElectroFrio en San Martín 375."
+        },
+        {
+          "title": "Falta enlace tel: para llamada directa y hay enlaces href='#' vacíos en el footer",
+          "severity": "Medium",
+          "description": "Todos los enlaces telefónicos van a wa.me y los ítems de Dirección/Horario del footer tienen <a href='#'>.",
+          "recommendation": "Añadir opción de llamada directa tel:+5493804349027 y enlazar la dirección del footer a https://maps.app.goo.gl/eTM7RfKnZbjCNiLS8."
+        }
+      ]
+    },
+    {
+      "name": "Schema / Structured Data",
+      "weight": 0.10,
+      "score": 68,
+      "what_works": [
+        "Bloques JSON-LD sintácticamente válidos para LocalBusiness y FAQPage",
+        "Incluye sameAs con CID de Google Maps (16905383072694696618), horarios, dirección postal y aggregateRating"
+      ],
+      "findings": [
+        {
+          "title": "URLs en JSON-LD apuntan al dominio antiguo (electro-frio.vercel.app)",
+          "severity": "High",
+          "description": "Los campos @id, url, logo e image en LocalBusiness usan https://electro-frio.vercel.app/.",
+          "recommendation": "Actualizar @id, url, logo e image a https://electrofriov2.vercel.app/."
+        },
+        {
+          "title": "Uso de tipo genérico LocalBusiness sin subtipos específicos ni entidades Person para los técnicos matriculados",
+          "severity": "Medium",
+          "description": "No se aprovechan los subtipos HVACBusiness y Electrician ni se declaran los técnicos matriculados (CACAAV / Ley 10.281) en el grafo JSON-LD.",
+          "recommendation": "Usar '@type': ['LocalBusiness', 'HVACBusiness', 'Electrician'] y añadir las entidades Person con hasCredential para Víctor Ignacio Arias Jorge y José Ramiro Páez."
+        }
+      ]
+    },
+    {
+      "name": "Performance (Core Web Vitals)",
+      "weight": 0.10,
+      "score": 62,
+      "what_works": [
+        "Font Awesome cargado de forma diferida (media='print' onload)",
+        "Imágenes debajo del pliegue cuentan con loading='lazy' y decoding='async'"
+      ],
+      "findings": [
+        {
+          "title": "Video en Hero de 8.63 MB (fondo.mp4) con autoplay fuerza descarga inmediata",
+          "severity": "High",
+          "description": "El atributo autoplay en <video> anula preload='none' en los navegadores modernos, descargando 9 MB al abrir la página y usando logo-Electrofrio.png como poster.",
+          "recommendation": "Comprimir fondo.mp4 a ~1.2–1.5 MB (720p CRF 28 sin pista de audio, más versión WebM) y usar un fotograma real en WebP como poster."
+        },
+        {
+          "title": "Las 17 etiquetas <img> carecen de atributos width y height explícitos",
+          "severity": "Medium",
+          "description": "La ausencia de dimensiones intrínsecas en HTML puede provocar desplazamientos de diseño (CLS) al cargar imágenes.",
+          "recommendation": "Agregar width y height explícitos a todas las etiquetas <img> según sus dimensiones reales."
+        }
+      ]
+    },
+    {
+      "name": "AI Search Readiness (GEO & Agentic)",
+      "weight": 0.10,
+      "score": 58,
+      "what_works": [
+        "Estructura FAQ clara con respuestas directas y concisas (~40-50 palabras por respuesta), ideal para extracción en AI Overviews",
+        "Datos de entidad local (matrículas, dirección, teléfono, cobertura) explícitos en texto plano"
+      ],
+      "findings": [
+        {
+          "title": "Archivo /llms.txt inexistente (HTTP 404)",
+          "severity": "High",
+          "description": "https://electrofriov2.vercel.app/llms.txt devuelve 404 NOT_FOUND.",
+          "recommendation": "Crear public/llms.txt con resumen estructurado de ElectroFrio, servicios, matrículas profesionales, horarios, dirección y contacto."
+        },
+        {
+          "title": "Formulario de contacto sin atributos autocomplete ni anotaciones declarativas para agentes",
+          "severity": "Medium",
+          "description": "Los campos #nombre, #servicio y #mensaje no tienen autocomplete='name' ni atributos descriptivos para agentes de navegación.",
+          "recommendation": "Agregar autocomplete='name' y atributos semánticos claros en #form-contacto."
+        }
+      ]
+    },
+    {
+      "name": "Images",
+      "weight": 0.05,
+      "score": 55,
+      "what_works": [
+        "Todas las imágenes cuentan con atributo alt descriptivo en español",
+        "Lazy loading aplicado en galería y tarjetas de servicio"
+      ],
+      "findings": [
+        {
+          "title": "3 imágenes PNG fotográficas pesan casi 2 MB en total y no usan WebP/AVIF",
+          "severity": "High",
+          "description": "serv-tecnologia.png (763 KB), serv-domotica.png (709.7 KB) y aire.png (525 KB) están guardadas como PNG sin compresión moderna.",
+          "recommendation": "Convertir todas las imágenes de servicios y equipo a WebP (reducción estimada de 2.8 MB a <350 KB)."
+        },
+        {
+          "title": "Dimensiones Open Graph declaradas (512x512) no coinciden con la imagen real (1171x392)",
+          "severity": "Medium",
+          "description": "og:image apunta a logo-Electrofrio.png (1171x392 px) pero declara og:image:width=512 y og:image:height=512.",
+          "recommendation": "Crear una imagen og-image.jpg/webp de 1200x630 px y actualizar og:image, og:image:width, og:image:height y twitter:card='summary_large_image'."
+        }
+      ]
+    }
+  ],
+  "action_plan": {
+    "phases": [
+      {
+        "name": "Phase 1: Critical & Quick Wins (Indexación y Dominio)",
+        "timeframe": "Día 1",
+        "items": [
+          "Corregir canonical, og:url, og:image, twitter:image, JSON-LD, robots.txt y sitemap.xml a https://electrofriov2.vercel.app/",
+          "Incluir 'en La Rioja' en el H1 / Hero badge y corregir el typo 'ELECTROFRÍA' → 'ElectroFrio'",
+          "Unificar el preload de Google Fonts y eliminar enlaces <a href='#'> del footer"
+        ]
+      },
+      {
+        "name": "Phase 2: Optimización de Rendimiento, Imágenes y Schema Local",
+        "timeframe": "Semana 1",
+        "items": [
+          "Convertir PNGs pesados (serv-tecnologia.png, serv-domotica.png, aire.png) a WebP y comprimir fondo.mp4 (<1.5 MB)",
+          "Añadir width y height a las 17 imágenes y enriquecer JSON-LD con HVACBusiness, Electrician y Person (técnicos matriculados)",
+          "Actualizar el iframe de Google Maps con el Place ID real (ChIJ35kZlXbbJ5QRtmUPQGrDJqQ) y añadir enlace tel:+5493804349027"
+        ]
+      },
+      {
+        "name": "Phase 3: Preparación para IA (GEO/Agentic) y Seguridad HTTP",
+        "timeframe": "Semana 2",
+        "items": [
+          "Crear public/llms.txt y configurar cabeceras de seguridad en vercel.json",
+          "Incluir 3-5 testimonios reales en HTML estático junto al widget de Elfsight"
+        ]
+      },
+      {
+        "name": "Phase 4: Expansión de Autoridad Local",
+        "timeframe": "Mes 1-2",
+        "items": [
+          "Crear páginas dedicadas por servicio principal (Refrigeración/Aires, Electricidad Matriculada, Frío Comercial)",
+          "Registrar el negocio en Bing Places y Apple Maps para visibilidad en ChatGPT/Copilot/Siri"
+        ]
+      }
+    ]
+  }
+}

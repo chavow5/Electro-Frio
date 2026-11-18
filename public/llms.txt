@@ -1,0 +1,43 @@
+# ElectroFrio — Electricidad y Refrigeración en La Rioja, Argentina
+
+> ElectroFrio es una empresa riojana fundada en 2014 especializada en servicios técnicos e insumos de electricidad, refrigeración residencial y comercial, iluminación LED, reparación de electrodomésticos, cámaras de seguridad (CCTV/redes) y domótica en La Rioja Capital y alrededores. Cuenta con Técnicos Superiores Matriculados (CACAAV y Seguridad Eléctrica Ley 10.281 Categoría III) y garantía escrita en todos sus trabajos.
+
+## Datos del Negocio (NAP)
+
+- **Nombre comercial:** ElectroFrio (Electro Frío La Rioja)
+- **Sitio web oficial:** https://electrofriov2.vercel.app/
+- **Dirección física:** San Martín 375, La Rioja Capital, Provincia de La Rioja, Argentina (CP F5300)
+- **Coordenadas GPS:** -29.41180, -66.85190
+- **Teléfono / WhatsApp:** +54 9 380 434-9027 (https://wa.me/5493804349027)
+- **Correo electrónico:** electrofrio@gmail.com
+- **Horarios de atención:** Lunes a Viernes de 08:00 a 18:00 hs | Sábados de 09:00 a 13:00 hs
+- **Zona de cobertura:** Ciudad de La Rioja Capital y alrededores (hogares, comercios, restaurantes, supermercados e industrias)
+- **Medios de pago:** Efectivo, Transferencia Bancaria, Mercado Pago, Tarjetas de Débito y Crédito (emisión de comprobantes oficiales)
+- **Calificación en Google Maps:** 5.0 / 5.0 estrellas (Google Place ID: `ChIJ35kZlXbbJ5QRtmUPQGrDJqQ`, CID: `16905383072694696618`)
+
+## Dirección Técnica y Profesionales Matriculados
+
+1. **Arias Jorge, Víctor Ignacio** — Dirección General · Técnico Superior
+   - **Matrícula Oficial CACAAV (Cámara Argentina de Calefacción, Aire Acondicionado y Ventilación):** N° 17284-000-20-5
+   - **Especialidad:** Planificación y ejecución de proyectos eléctricos y de refrigeración comercial, industrial y domiciliaria.
+2. **Páez, José Ramiro** — Dirección General · Técnico Superior · Electricista Categoría III
+   - **Matrícula Seguridad Eléctrica Ley 10.281:** N° 3339456-06900
+   - **Especialidad:** Seguridad eléctrica, instalaciones monofásicas y trifásicas, asesoramiento técnico y comercialización de materiales eléctricos.
+
+## Servicios Principales
+
+- **Electricidad Matriculada (Cat. III):** Instalaciones monofásicas y trifásicas, armado y normalización de tableros eléctricos, cableados, puesta a tierra, mantenimiento preventivo y reparación de cortocircuitos o fugas.
+- **Refrigeración y Aires Acondicionados (Matriculados CACAAV):** Instalación, mantenimiento preventivo (limpieza profunda, carga de gas, revisión eléctrica y control de rendimiento) y reparación de aires acondicionados split e industriales, heladeras familiares, heladeras comerciales exhibidoras, bateas y cámaras frigoríficas (atención de urgencias para comercios y gastronomía).
+- **Iluminación LED:** Diseño y colocación de luminarias LED interiores, comerciales, jardines, exteriores y proyectos de eficiencia energética.
+- **Electrodomésticos (Reparación y Retiro a Domicilio):** Diagnóstico y service técnico de lavarropas, hornos eléctricos, microondas y equipamiento del hogar con retiro a domicilio en La Rioja.
+- **Tecnologías, CCTV y Redes:** Instalación de cámaras de seguridad CCTV, configuración de redes Wi-Fi, routers, repetidores y cableado estructurado.
+- **Domótica:** Automatización y control inteligente de iluminación, climatización, accesos y dispositivos desde smartphone.
+
+## Enlaces Oficiales
+
+- [Página Principal](https://electrofriov2.vercel.app/)
+- [Contacto Directo por WhatsApp](https://wa.me/5493804349027)
+- [Ubicación en Google Maps](https://maps.app.goo.gl/eTM7RfKnZbjCNiLS8)
+- [Ficha de Google Maps (CID)](https://maps.google.com/?cid=16905383072694696618)
+- [Instagram Oficial (@electrofriolr)](https://www.instagram.com/electrofriolr)
+- [Facebook Oficial (/electrofriolr)](https://www.facebook.com/electrofriolr)

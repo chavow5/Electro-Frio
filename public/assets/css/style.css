@@ -50,7 +50,7 @@ body {
   line-height: 1.65;
   overflow-x: hidden;
 }
-img   { max-width:100%; display:block; }
+img   { max-width:100%; height:auto; display:block; }
 a     { text-decoration:none; color:inherit; transition: var(--ease); }
 ul    { list-style:none; }
 input,textarea,select,button { font-family:inherit; }
@@ -1572,7 +1572,7 @@ footer {
   display:flex; align-items:center; gap:0.6rem;
   margin-bottom:1.25rem;
 }
-.footer-logo img { height:40px; }
+.footer-logo img { height:40px; width:auto; }
 .footer-desc {
   color:var(--text-muted); font-size:0.85rem;
   line-height:1.8; max-width:270px;
