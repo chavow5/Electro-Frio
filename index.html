@@ -42,7 +42,8 @@
   <link rel="apple-touch-icon"                  href="/assets/img/logo-Electrofrio.png" />
 
   <!-- ===================== PRELOADS CRÍTICOS ===================== -->
-  <link rel="preload" href="/assets/css/style.css" as="style" />
+  <link rel="preload" href="/assets/css/style.min.css" as="style" />
+  <link rel="preload" href="/assets/img/hero-poster.webp" as="image" type="image/webp" fetchpriority="high" />
   <link rel="preload" href="/assets/img/logo-Electrofrio.webp" as="image" type="image/webp" fetchpriority="high" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -51,16 +52,12 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400;1,700&display=swap" media="print" onload="this.media='all'" />
   <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400;1,700&display=swap" /></noscript>
 
-  <!-- ===================== FONT AWESOME (diferido + font-display:swap) ===================== -->
+  <!-- ===================== FONT AWESOME (slim + diferido + font-display:swap) ===================== -->
   <link rel="stylesheet" href="/assets/vendor/fontawesome.min.css" media="print" onload="this.media='all'" />
   <noscript><link rel="stylesheet" href="/assets/vendor/fontawesome.min.css" /></noscript>
 
-  <!-- ===================== SWIPER CSS (local + diferido) ===================== -->
-  <link rel="stylesheet" href="/assets/vendor/swiper-bundle.min.css" media="print" onload="this.media='all'" />
-  <noscript><link rel="stylesheet" href="/assets/vendor/swiper-bundle.min.css" /></noscript>
-
-  <!-- Estilos propios -->
-  <link rel="stylesheet" href="/assets/css/style.css" />
+  <!-- Estilos propios minificados -->
+  <link rel="stylesheet" href="/assets/css/style.min.css" />
 
   <!-- ===================== SCHEMA JSON-LD ===================== -->
   <script type="application/ld+json">
@@ -349,7 +346,7 @@
   <div class="container header-inner">
 
     <!-- Logo -->
-    <a href="#inicio" class="logo">
+    <a href="#inicio" class="logo" aria-label="ElectroFrio — Ir al inicio">
       <img src="/assets/img/logo-Electrofrio.webp" alt="ElectroFrio — Electricidad y Refrigeración en La Rioja" width="143" height="48" fetchpriority="high" />
     </a>
 
@@ -387,7 +384,7 @@
      ============================================================ -->
 <section id="inicio">
   <div id="hero">
-    <!-- Fondo: video -->
+    <!-- Fondo: video con carga diferida tras LCP -->
     <div class="hero-bg">
       <video
         class="hero-video"
@@ -395,12 +392,11 @@
         muted
         loop
         playsinline
-        preload="metadata"
+        preload="none"
         poster="/assets/img/hero-poster.webp"
+        data-src="/assets/video/fondo.mp4"
         aria-hidden="true"
-      >
-        <source src="/assets/video/fondo.mp4" type="video/mp4" />
-      </video>
+      ></video>
     </div>
     <div class="hero-overlay"></div>
     <div class="hero-grid"></div>
@@ -614,7 +610,7 @@
                 <img src="/assets/img/servicios/aire.webp" alt="Reparación de aire acondicionado en La Rioja" width="520" height="346" loading="lazy" decoding="async" />
               </div>
               <div class="card-trabajo-info">
-                <h4>Reparación de A/C</h4>
+                <h3>Reparación de A/C</h3>
                 <span>Servicio técnico residencial</span>
               </div>
             </div>
@@ -626,7 +622,7 @@
                 <img src="/assets/img/servicios/serv-02.webp" alt="Mantenimiento preventivo industrial en La Rioja" width="452" height="378" loading="lazy" decoding="async" />
               </div>
               <div class="card-trabajo-info">
-                <h4>Mantenimiento preventivo</h4>
+                <h3>Mantenimiento preventivo</h3>
                 <span>Equipo industrial — La Rioja</span>
               </div>
             </div>
@@ -638,7 +634,7 @@
                 <img src="/assets/img/servicios/serv-06.webp" alt="Instalación de iluminación exterior residencial" width="420" height="746" loading="lazy" decoding="async" />
               </div>
               <div class="card-trabajo-info">
-                <h4>Iluminación exterior</h4>
+                <h3>Iluminación exterior</h3>
                 <span>Instalación residencial</span>
               </div>
             </div>
@@ -650,7 +646,7 @@
                 <img src="/assets/img/servicios/serv-05.webp" alt="Iluminación de jardín nocturna en La Rioja" width="420" height="420" loading="lazy" decoding="async" />
               </div>
               <div class="card-trabajo-info">
-                <h4>Iluminación de jardín</h4>
+                <h3>Iluminación de jardín</h3>
                 <span>Instalación exterior — La Rioja</span>
               </div>
             </div>
@@ -662,7 +658,7 @@
                 <img src="/assets/img/trabajos/trab-01.webp" alt="Iluminación decorativa exterior en La Rioja" width="416" height="740" loading="lazy" decoding="async" />
               </div>
               <div class="card-trabajo-info">
-                <h4>Iluminación decorativa</h4>
+                <h3>Iluminación decorativa</h3>
                 <span>Espacio exterior — La Rioja</span>
               </div>
             </div>
@@ -674,7 +670,7 @@
                 <img src="/assets/img/servicios/serv-03.webp" alt="Instalación de iluminación inteligente LED" width="420" height="735" loading="lazy" decoding="async" />
               </div>
               <div class="card-trabajo-info">
-                <h4>Iluminación inteligente</h4>
+                <h3>Iluminación inteligente</h3>
                 <span>Instalación residencial</span>
               </div>
             </div>
@@ -683,8 +679,8 @@
         </div><!-- /swiper-wrapper -->
 
         <div class="swiper-pagination" style="bottom:0;"></div>
-        <div class="swiper-button-prev swiper-trb-prev"></div>
-        <div class="swiper-button-next swiper-trb-next"></div>
+        <div class="swiper-button-prev swiper-trb-prev" role="button" tabindex="0" aria-label="Trabajo anterior"></div>
+        <div class="swiper-button-next swiper-trb-next" role="button" tabindex="0" aria-label="Siguiente trabajo"></div>
       </div>
     </div>
   </div>
@@ -1032,7 +1028,7 @@
 
       <!-- Columna 2 — Servicios -->
       <div class="footer-col">
-        <h5>Servicios</h5>
+        <h3>Servicios</h3>
         <ul class="footer-links">
           <li><a href="#servicios"><i class="fa-solid fa-chevron-right"></i> Electricidad</a></li>
           <li><a href="#servicios"><i class="fa-solid fa-chevron-right"></i> Refrigeración</a></li>
@@ -1045,7 +1041,7 @@
 
       <!-- Columna 3 — Contacto -->
       <div class="footer-col">
-        <h5>Contacto</h5>
+        <h3>Contacto</h3>
         <ul class="footer-links">
           <li>
             <a href="https://wa.me/5493804349027" target="_blank" rel="noopener">
@@ -1074,7 +1070,7 @@
 
     <div class="footer-bottom">
       <p>© <span id="year"></span> ElectroFrio — Todos los derechos reservados · La Rioja, Argentina</p>
-      <p>Hecho por <strong>David Ramirez</strong> · <a href="https://www.instagram.com/davidramirez_651/" target="_blank" rel="noopener"><i class="fa-brands fa-instagram"></i> @davidramirez_651</a></p>
+      <p><strong>David Ramirez</strong> · <a href="https://www.instagram.com/davidramirez_651/" target="_blank" rel="noopener"><i class="fa-brands fa-instagram"></i> @davidramirez_651</a></p>
     </div>
 
   </div>
@@ -1083,7 +1079,6 @@
 <!-- ============================================================
      SCRIPTS (Diferidos + Locales con caché inmutable)
      ============================================================ -->
-<script src="/assets/vendor/swiper-bundle.min.js" defer></script>
 <script src="/assets/js/main.js" defer></script>
 
 </body>

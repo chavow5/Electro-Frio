@@ -1,12 +1,23 @@
 /* ===========================================
-   ELECTRO-FRIO — JavaScript Principal
+   ELECTRO-FRIO — JavaScript Principal Optimizado
    =========================================== */
 
 document.addEventListener('DOMContentLoaded', () => {
 
+  /* ---- AÑO DINÁMICO EN FOOTER ---- */
+  const yearEl = document.getElementById('year');
+  if (yearEl) yearEl.textContent = new Date().getFullYear();
+
   /* ---- STICKY HEADER ---- */
   const header = document.getElementById('main-header');
-  const onScroll = () => header.classList.toggle('scrolled', window.scrollY > 60);
+  let isScrolled = false;
+  const onScroll = () => {
+    const shouldScroll = window.scrollY > 60;
+    if (shouldScroll !== isScrolled) {
+      isScrolled = shouldScroll;
+      header?.classList.toggle('scrolled', shouldScroll);
+    }
+  };
   window.addEventListener('scroll', onScroll, { passive: true });
 
   /* ---- MOBILE MENU (Offcanvas) ---- */
@@ -16,15 +27,17 @@ document.addEventListener('DOMContentLoaded', () => {
   const closeBtn   = document.querySelector('.offcanvas-close');
 
   function openMenu() {
-    offcanvas.classList.add('open');
-    overlay.classList.add('open');
-    hamburger.classList.add('is-open');
+    offcanvas?.classList.add('open');
+    overlay?.classList.add('open');
+    hamburger?.classList.add('is-open');
+    hamburger?.setAttribute('aria-expanded', 'true');
     document.body.style.overflow = 'hidden';
   }
   function closeMenu() {
-    offcanvas.classList.remove('open');
-    overlay.classList.remove('open');
-    hamburger.classList.remove('is-open');
+    offcanvas?.classList.remove('open');
+    overlay?.classList.remove('open');
+    hamburger?.classList.remove('is-open');
+    hamburger?.setAttribute('aria-expanded', 'false');
     document.body.style.overflow = '';
   }
 
@@ -33,27 +46,77 @@ document.addEventListener('DOMContentLoaded', () => {
   overlay?.addEventListener('click', closeMenu);
   document.querySelectorAll('.offcanvas-nav a').forEach(a => a.addEventListener('click', closeMenu));
 
-  if (typeof Swiper !== 'undefined') {
-    /* ---- TRABAJOS SWIPER ---- */
-    new Swiper('.swiper-trabajos', {
-      loop: true,
-      grabCursor: true,
-      autoplay: { delay: 3600, disableOnInteraction: false },
-      speed: 550,
-      navigation: {
-        nextEl: '.swiper-trb-next',
-        prevEl: '.swiper-trb-prev',
-      },
-      pagination: {
-        el: '.swiper-trabajos .swiper-pagination',
-        clickable: true,
-      },
-      breakpoints: {
-        0:    { slidesPerView: 1.15, spaceBetween: 12, centeredSlides: true },
-        600:  { slidesPerView: 2,    spaceBetween: 16, centeredSlides: false },
-        1024: { slidesPerView: 3,    spaceBetween: 20, centeredSlides: false },
-      },
-    });
+  /* ---- CARGA DIFERIDA DEL VIDEO HERO (Evita bloqueo de LCP móvil) ---- */
+  const heroVideo = document.querySelector('.hero-video[data-src]');
+  if (heroVideo) {
+    let videoLoaded = false;
+    const initHeroVideo = () => {
+      if (videoLoaded) return;
+      videoLoaded = true;
+      const src = heroVideo.getAttribute('data-src');
+      if (src) {
+        heroVideo.src = src;
+        heroVideo.load();
+        heroVideo.play().catch(() => {});
+      }
+      ['scroll', 'touchstart', 'mousemove', 'keydown'].forEach(evt =>
+        window.removeEventListener(evt, initHeroVideo)
+      );
+    };
+    ['scroll', 'touchstart', 'mousemove', 'keydown'].forEach(evt =>
+      window.addEventListener(evt, initHeroVideo, { passive: true, once: true })
+    );
+  }
+
+  /* ---- CARGA DIFERIDA DE SWIPER (Galería #trabajos) ---- */
+  const trabajosSection = document.getElementById('trabajos');
+  if (trabajosSection) {
+    let swiperLoaded = false;
+    const initSwiperCarousel = () => {
+      if (swiperLoaded) return;
+      swiperLoaded = true;
+
+      const link = document.createElement('link');
+      link.rel = 'stylesheet';
+      link.href = '/assets/vendor/swiper-bundle.min.css';
+      document.head.appendChild(link);
+
+      const script = document.createElement('script');
+      script.src = '/assets/vendor/swiper-bundle.min.js';
+      script.async = true;
+      script.onload = () => {
+        if (typeof Swiper !== 'undefined') {
+          new Swiper('.swiper-trabajos', {
+            loop: true,
+            grabCursor: true,
+            autoplay: { delay: 3600, disableOnInteraction: false },
+            speed: 550,
+            navigation: {
+              nextEl: '.swiper-trb-next',
+              prevEl: '.swiper-trb-prev',
+            },
+            pagination: {
+              el: '.swiper-trabajos .swiper-pagination',
+              clickable: true,
+            },
+            breakpoints: {
+              0:    { slidesPerView: 1.15, spaceBetween: 12, centeredSlides: true },
+              600:  { slidesPerView: 2,    spaceBetween: 16, centeredSlides: false },
+              1024: { slidesPerView: 3,    spaceBetween: 20, centeredSlides: false },
+            },
+          });
+        }
+      };
+      document.body.appendChild(script);
+    };
+
+    const swiperObserver = new IntersectionObserver((entries) => {
+      if (entries.some(e => e.isIntersecting)) {
+        initSwiperCarousel();
+        swiperObserver.disconnect();
+      }
+    }, { rootMargin: '500px 0px' });
+    swiperObserver.observe(trabajosSection);
   }
 
   /* ---- FORMULARIO → WHATSAPP ---- */
@@ -93,13 +156,12 @@ document.addEventListener('DOMContentLoaded', () => {
   document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
       const id = this.getAttribute('href');
-      if (id === '#') return;
+      if (!id || id === '#') return;
       const target = document.querySelector(id);
       if (target) {
         e.preventDefault();
-        const offset = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--header-h')) || 76;
         window.scrollTo({
-          top: target.getBoundingClientRect().top + window.scrollY - offset,
+          top: target.getBoundingClientRect().top + window.scrollY - 76,
           behavior: 'smooth',
         });
       }
@@ -122,8 +184,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }, { threshold: 0.45 });
   sections.forEach(s => spyObserver.observe(s));
 
-
-  /* ---- FAQ ACCORDION (UI/UX Pro Max) ---- */
+  /* ---- FAQ ACCORDION ---- */
   const faqItems = document.querySelectorAll('.faq-item');
   faqItems.forEach(item => {
     const question = item.querySelector('.faq-question');
@@ -132,7 +193,6 @@ document.addEventListener('DOMContentLoaded', () => {
     question?.addEventListener('click', () => {
       const isOpen = item.classList.contains('active');
 
-      // Cerrar otros acordeones para mantener orden visual
       faqItems.forEach(other => {
         if (other !== item && other.classList.contains('active')) {
           other.classList.remove('active');
@@ -153,10 +213,6 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
   });
-
-  /* ---- AÑO DINÁMICO EN FOOTER ---- */
-  const yearEl = document.getElementById('year');
-  if (yearEl) yearEl.textContent = new Date().getFullYear();
 
   /* ---- CARGA DIFERIDA DE ELFSIGHT GOOGLE REVIEWS ---- */
   const testimoniosSection = document.getElementById('testimonios');
@@ -180,5 +236,3 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
 });
-
-
