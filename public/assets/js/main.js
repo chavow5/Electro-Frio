@@ -154,6 +154,31 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
+  /* ---- AÑO DINÁMICO EN FOOTER ---- */
+  const yearEl = document.getElementById('year');
+  if (yearEl) yearEl.textContent = new Date().getFullYear();
+
+  /* ---- CARGA DIFERIDA DE ELFSIGHT GOOGLE REVIEWS ---- */
+  const testimoniosSection = document.getElementById('testimonios');
+  if (testimoniosSection) {
+    let elfsightLoaded = false;
+    const loadElfsight = () => {
+      if (elfsightLoaded) return;
+      elfsightLoaded = true;
+      const s = document.createElement('script');
+      s.src = 'https://static.elfsight.com/platform/platform.js';
+      s.async = true;
+      document.body.appendChild(s);
+    };
+    const elfsightObserver = new IntersectionObserver((entries) => {
+      if (entries.some(e => e.isIntersecting)) {
+        loadElfsight();
+        elfsightObserver.disconnect();
+      }
+    }, { rootMargin: '600px 0px' });
+    elfsightObserver.observe(testimoniosSection);
+  }
+
 });
 
 
