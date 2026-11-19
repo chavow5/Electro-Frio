@@ -37,27 +37,32 @@
   <meta name="twitter:description"  content="Técnicos matriculados. Reparación de aires acondicionados, heladeras comerciales e instalaciones eléctricas en La Rioja." />
   <meta name="twitter:image"        content="https://electrofriov2.vercel.app/assets/img/og-electrofrio.jpg" />
 
-  <!-- ===================== FAVICON ===================== -->
-  <link rel="icon"             type="image/png" href="/assets/img/logo-Electrofrio.png" />
-  <link rel="apple-touch-icon"                  href="/assets/img/logo-Electrofrio.png" />
+  <!-- ===================== FAVICON & MOBILE APP ICON ===================== -->
+  <link rel="icon"             type="image/png" sizes="64x64"   href="/assets/img/favicon.png" />
+  <link rel="icon"             type="image/png" sizes="512x512" href="/assets/img/favicon-512.png" />
+  <link rel="apple-touch-icon"                  sizes="180x180" href="/assets/img/apple-touch-icon.png" />
+  <link rel="manifest"                                          href="/manifest.json" />
+  <meta name="theme-color"                                      content="#050d1a" />
+  <meta name="apple-mobile-web-app-capable"                     content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style"            content="black-translucent" />
+  <meta name="apple-mobile-web-app-title"                       content="ElectroFrio" />
 
   <!-- ===================== PRELOADS CRÍTICOS ===================== -->
-  <link rel="preload" href="/assets/css/style.min.css" as="style" />
+  <link rel="preload" href="/assets/css/style.css" as="style" />
   <link rel="preload" href="/assets/img/hero-poster.webp" as="image" type="image/webp" fetchpriority="high" />
   <link rel="preload" href="/assets/img/logo-Electrofrio.webp" as="image" type="image/webp" fetchpriority="high" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 
-  <!-- ===================== FUENTES (no bloqueante) ===================== -->
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400;1,700&display=swap" media="print" onload="this.media='all'" />
-  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400;1,700&display=swap" /></noscript>
+  <!-- ===================== FUENTES ===================== -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400;1,700&display=swap" />
 
-  <!-- ===================== FONT AWESOME (slim + diferido + font-display:swap) ===================== -->
-  <link rel="stylesheet" href="/assets/vendor/fontawesome.min.css" media="print" onload="this.media='all'" />
-  <noscript><link rel="stylesheet" href="/assets/vendor/fontawesome.min.css" /></noscript>
+  <!-- ===================== FONT AWESOME & SWIPER CSS ===================== -->
+  <link rel="stylesheet" href="/assets/vendor/fontawesome.min.css" />
+  <link rel="stylesheet" href="/assets/vendor/swiper-bundle.min.css" />
 
-  <!-- Estilos propios minificados -->
-  <link rel="stylesheet" href="/assets/css/style.min.css" />
+  <!-- Estilos propios -->
+  <link rel="stylesheet" href="/assets/css/style.css" />
 
   <!-- ===================== SCHEMA JSON-LD ===================== -->
   <script type="application/ld+json">
@@ -264,6 +269,14 @@
           "@type": "Answer",
           "text": "Cubrimos toda la ciudad de La Rioja Capital y alrededores, atendiendo domicilios particulares, comercios, complejos gastronómicos e industrias."
         }
+      },
+      {
+        "@type": "Question",
+        "name": "¿Cuentan con técnicos matriculados oficiales?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Sí, nuestro personal está formalmente calificado bajo normativas vigentes de seguridad eléctrica y sistemas de climatización comercial y residencial."
+        }
       }
     ]
   }
@@ -307,6 +320,7 @@
       <li><a href="#trabajos">  <i class="fa-solid fa-images fa-fw"></i>   Trabajos</a></li>
       <li><a href="#testimonios"><i class="fa-solid fa-star fa-fw"></i>    Testimonios</a></li>
       <li><a href="#equipo">    <i class="fa-solid fa-users fa-fw"></i>   Equipo</a></li>
+      <li><a href="#empleo">    <i class="fa-solid fa-briefcase fa-fw"></i> Empleo</a></li>
       <li><a href="#faq">       <i class="fa-solid fa-circle-question fa-fw"></i> Preguntas</a></li>
       <li><a href="#contacto">  <i class="fa-solid fa-envelope fa-fw"></i> Contacto</a></li>
     </ul>
@@ -357,6 +371,7 @@
       <a href="#trabajos">Trabajos</a>
       <a href="#testimonios">Testimonios</a>
       <a href="#equipo">Equipo</a>
+      <a href="#empleo">Empleo</a>
       <a href="#faq">Preguntas</a>
       <a href="#contacto">Contacto</a>
     </nav>
@@ -384,7 +399,7 @@
      ============================================================ -->
 <section id="inicio">
   <div id="hero">
-    <!-- Fondo: video con carga diferida tras LCP -->
+    <!-- Fondo: video Full HD -->
     <div class="hero-bg">
       <video
         class="hero-video"
@@ -392,11 +407,12 @@
         muted
         loop
         playsinline
-        preload="none"
+        preload="auto"
         poster="/assets/img/hero-poster.webp"
-        data-src="/assets/video/fondo.mp4"
         aria-hidden="true"
-      ></video>
+      >
+        <source src="/assets/video/fondo.mp4" type="video/mp4" />
+      </video>
     </div>
     <div class="hero-overlay"></div>
     <div class="hero-grid"></div>
@@ -476,12 +492,12 @@
   </div>
 
   <div class="container container-wide">
-    <div class="grid-servicios fade-up">
+    <div class="grid-servicios">
 
       <!-- Servicio 1: Electricidad -->
-      <div class="card-servicio">
+      <div class="card-servicio fade-up d1">
         <div class="card-srv-bg">
-          <img src="/assets/img/servicios/serv-06.webp" alt="Instalaciones eléctricas y electricista matriculado en La Rioja" width="420" height="746" loading="lazy" decoding="async" />
+          <img src="/assets/img/servicios/serv-06.webp" alt="Instalaciones eléctricas y electricista matriculado en La Rioja" width="1080" height="1920" loading="lazy" decoding="async" />
         </div>
         <div class="card-srv-overlay">
           <div class="srv-neon-bar"></div>
@@ -491,9 +507,9 @@
       </div>
 
       <!-- Servicio 2: Refrigeración -->
-      <div class="card-servicio">
+      <div class="card-servicio fade-up d2">
         <div class="card-srv-bg">
-          <img src="/assets/img/servicios/aire.webp" alt="Servicio técnico de refrigeración y aires acondicionados en La Rioja" width="520" height="346" loading="lazy" decoding="async" />
+          <img src="/assets/img/servicios/aire.webp" alt="Servicio técnico de refrigeración y aires acondicionados en La Rioja" width="1200" height="800" loading="lazy" decoding="async" />
         </div>
         <div class="card-srv-overlay">
           <div class="srv-neon-bar"></div>
@@ -503,9 +519,9 @@
       </div>
 
       <!-- Servicio 3: Iluminación -->
-      <div class="card-servicio">
+      <div class="card-servicio fade-up d3">
         <div class="card-srv-bg">
-          <img src="/assets/img/servicios/serv-03.webp" alt="Instalaciones de iluminación y luminarias LED en La Rioja" width="420" height="735" loading="lazy" decoding="async" />
+          <img src="/assets/img/servicios/serv-03.webp" alt="Instalaciones de iluminación y luminarias LED en La Rioja" width="1080" height="1890" loading="lazy" decoding="async" />
         </div>
         <div class="card-srv-overlay">
           <div class="srv-neon-bar"></div>
@@ -515,9 +531,9 @@
       </div>
 
       <!-- Servicio 4: Electrodomésticos (Reparación / Retiro) -->
-      <div class="card-servicio">
+      <div class="card-servicio fade-up d4">
         <div class="card-srv-bg">
-          <img src="/assets/img/servicios/serv-02.webp" alt="Reparación de electrodomésticos con retiro a domicilio en La Rioja" width="452" height="378" loading="lazy" decoding="async" />
+          <img src="/assets/img/servicios/serv-02.webp" alt="Reparación de electrodomésticos con retiro a domicilio en La Rioja" width="1102" height="924" loading="lazy" decoding="async" />
         </div>
         <div class="card-srv-overlay">
           <div class="srv-neon-bar"></div>
@@ -527,9 +543,9 @@
       </div>
 
       <!-- Servicio 5: Tecnologías (Cámaras, Routers, etc.) -->
-      <div class="card-servicio">
+      <div class="card-servicio fade-up d1">
         <div class="card-srv-bg">
-          <img src="/assets/img/servicios/serv-tecnologia.webp" alt="Instalación de cámaras de seguridad CCTV y redes Wi-Fi en La Rioja" width="570" height="380" loading="lazy" decoding="async" />
+          <img src="/assets/img/servicios/serv-tecnologia.webp" alt="Instalación de cámaras de seguridad CCTV y redes Wi-Fi en La Rioja" width="1200" height="800" loading="lazy" decoding="async" />
         </div>
         <div class="card-srv-overlay">
           <div class="srv-neon-bar"></div>
@@ -539,9 +555,9 @@
       </div>
 
       <!-- Servicio 6: Domótica -->
-      <div class="card-servicio">
+      <div class="card-servicio fade-up d2">
         <div class="card-srv-bg">
-          <img src="/assets/img/servicios/serv-domotica.webp" alt="Automatización y domótica inteligente para hogares y comercios" width="520" height="346" loading="lazy" decoding="async" />
+          <img src="/assets/img/servicios/serv-domotica.webp" alt="Automatización y domótica inteligente para hogares y comercios" width="1152" height="768" loading="lazy" decoding="async" />
         </div>
         <div class="card-srv-overlay">
           <div class="srv-neon-bar"></div>
@@ -561,7 +577,7 @@
   <div class="container">
     <div class="banner-card fade-up">
       <div class="banner-bg">
-        <img src="/assets/img/servicios/aire.webp" alt="Mantenimiento preventivo de aires acondicionados en La Rioja" width="520" height="346" loading="lazy" decoding="async" />
+        <img src="/assets/img/servicios/aire.webp" alt="Mantenimiento preventivo de aires acondicionados en La Rioja" width="1200" height="800" loading="lazy" decoding="async" />
       </div>
       <div class="banner-overlay"></div>
       <div class="banner-content">
@@ -607,7 +623,7 @@
           <div class="swiper-slide">
             <div class="card-trabajo">
               <div class="card-trabajo-media">
-                <img src="/assets/img/servicios/aire.webp" alt="Reparación de aire acondicionado en La Rioja" width="520" height="346" loading="lazy" decoding="async" />
+                <img src="/assets/img/servicios/aire.webp" alt="Reparación de aire acondicionado en La Rioja" width="1200" height="800" loading="lazy" decoding="async" />
               </div>
               <div class="card-trabajo-info">
                 <h3>Reparación de A/C</h3>
@@ -619,7 +635,7 @@
           <div class="swiper-slide">
             <div class="card-trabajo">
               <div class="card-trabajo-media">
-                <img src="/assets/img/servicios/serv-02.webp" alt="Mantenimiento preventivo industrial en La Rioja" width="452" height="378" loading="lazy" decoding="async" />
+                <img src="/assets/img/servicios/serv-02.webp" alt="Mantenimiento preventivo industrial en La Rioja" width="1102" height="924" loading="lazy" decoding="async" />
               </div>
               <div class="card-trabajo-info">
                 <h3>Mantenimiento preventivo</h3>
@@ -631,7 +647,7 @@
           <div class="swiper-slide">
             <div class="card-trabajo">
               <div class="card-trabajo-media">
-                <img src="/assets/img/servicios/serv-06.webp" alt="Instalación de iluminación exterior residencial" width="420" height="746" loading="lazy" decoding="async" />
+                <img src="/assets/img/servicios/serv-06.webp" alt="Instalación de iluminación exterior residencial" width="1080" height="1920" loading="lazy" decoding="async" />
               </div>
               <div class="card-trabajo-info">
                 <h3>Iluminación exterior</h3>
@@ -643,7 +659,7 @@
           <div class="swiper-slide">
             <div class="card-trabajo">
               <div class="card-trabajo-media">
-                <img src="/assets/img/servicios/serv-05.webp" alt="Iluminación de jardín nocturna en La Rioja" width="420" height="420" loading="lazy" decoding="async" />
+                <img src="/assets/img/servicios/serv-05.webp" alt="Iluminación de jardín nocturna en La Rioja" width="1000" height="1000" loading="lazy" decoding="async" />
               </div>
               <div class="card-trabajo-info">
                 <h3>Iluminación de jardín</h3>
@@ -655,7 +671,7 @@
           <div class="swiper-slide">
             <div class="card-trabajo">
               <div class="card-trabajo-media">
-                <img src="/assets/img/trabajos/trab-01.webp" alt="Iluminación decorativa exterior en La Rioja" width="416" height="740" loading="lazy" decoding="async" />
+                <img src="/assets/img/trabajos/trab-01.webp" alt="Iluminación decorativa exterior en La Rioja" width="948" height="1688" loading="lazy" decoding="async" />
               </div>
               <div class="card-trabajo-info">
                 <h3>Iluminación decorativa</h3>
@@ -667,7 +683,7 @@
           <div class="swiper-slide">
             <div class="card-trabajo">
               <div class="card-trabajo-media">
-                <img src="/assets/img/servicios/serv-03.webp" alt="Instalación de iluminación inteligente LED" width="420" height="735" loading="lazy" decoding="async" />
+                <img src="/assets/img/servicios/serv-03.webp" alt="Instalación de iluminación inteligente LED" width="1080" height="1890" loading="lazy" decoding="async" />
               </div>
               <div class="card-trabajo-info">
                 <h3>Iluminación inteligente</h3>
@@ -699,12 +715,12 @@
     </div>
 
     <!-- Tarjetas de técnicos principales -->
-    <div class="equipo-grid fade-up">
+    <div class="equipo-grid">
 
       <!-- Técnico 1 -->
-      <div class="equipo-card">
+      <div class="equipo-card fade-up d1">
         <div class="equipo-photo-wrap">
-          <img src="/assets/img/equipo/nacho.webp" alt="Arias Jorge, Víctor Ignacio — Técnico Superior Matriculado CACAAV" width="460" height="460" loading="lazy" decoding="async" />
+          <img src="/assets/img/equipo/nacho.webp" alt="Arias Jorge, Víctor Ignacio — Técnico Superior Matriculado CACAAV" width="1024" height="1024" loading="lazy" decoding="async" />
           <span class="equipo-badge"><i class="fa-solid fa-certificate"></i> Téc. Superior</span>
         </div>
         <div class="equipo-info">
@@ -725,9 +741,9 @@
       </div>
 
       <!-- Técnico 2 -->
-      <div class="equipo-card">
+      <div class="equipo-card fade-up d2">
         <div class="equipo-photo-wrap">
-          <img src="/assets/img/equipo/paez.webp" alt="Páez, José Ramiro — Técnico Superior y Electricista Categoría III" width="460" height="460" loading="lazy" decoding="async" />
+          <img src="/assets/img/equipo/paez.webp" alt="Páez, José Ramiro — Técnico Superior y Electricista Categoría III" width="1024" height="1024" loading="lazy" decoding="async" />
           <span class="equipo-badge"><i class="fa-solid fa-certificate"></i> Téc. Superior</span>
         </div>
         <div class="equipo-info">
@@ -755,6 +771,152 @@
       <p>Contamos además con <strong>técnicos ayudantes</strong> para garantizar tiempos de respuesta ágiles en toda La Rioja.</p>
     </div>
 
+  </div>
+</section>
+
+<div class="neon-divider"></div>
+
+<!-- ============================================================
+     BÚSQUEDA LABORAL / TRABAJÁ CON NOSOTROS (UI/UX Mobile First)
+     ============================================================ -->
+<section id="empleo" class="section">
+  <div class="container">
+    <div class="text-center fade-up">
+      <span class="eyebrow"><i class="fa-solid fa-briefcase"></i> Oportunidad Laboral · La Rioja</span>
+      <h2 class="section-title">Trabajá con <span class="accent">nosotros</span></h2>
+      <p class="section-desc">Buscamos técnicos comprometidos para sumarse a nuestro equipo de trabajo en constante crecimiento.</p>
+    </div>
+
+    <div class="empleo-grid">
+      <!-- Tarjeta izquierda: Flyer & Requisitos -->
+      <div class="empleo-card-info fade-up d1">
+        <h3 class="empleo-puesto-title">Técnico en Refrigeración y Electricidad</h3>
+        <p class="empleo-puesto-sub">Sumate a una empresa líder en La Rioja con capacitación continua, herramientas profesionales y excelente clima de trabajo.</p>
+
+        <div class="empleo-requisitos-box">
+          <h4><i class="fa-solid fa-circle-check"></i> Requisitos solicitados:</h4>
+          <ul>
+            <li><strong>Disponibilidad Horaria:</strong> Para atención programada y urgencias.</li>
+            <li><strong>Experiencia comprobable:</strong> En puestos similares de refrigeración o electricidad.</li>
+            <li><strong>Responsabilidad y puntualidad:</strong> Vocación de servicio y trabajo en equipo.</li>
+            <li><strong>Zona de trabajo:</strong> La Rioja Capital y alrededores.</li>
+          </ul>
+        </div>
+
+        <!-- Afiche Oficial de la Búsqueda -->
+        <div class="empleo-flyer-preview">
+          <img src="/assets/img/busqueda-laboral.jpg" alt="Búsqueda Laboral Técnico en Refrigeración y Electricidad ElectroFrio" width="355" height="615" loading="lazy" />
+        </div>
+      </div>
+
+      <!-- Tarjeta derecha: Formulario Postulación Express con subida de CV -->
+      <div class="empleo-card-form fade-up d2">
+        <div class="empleo-form-header">
+          <span class="efh-step"><i class="fa-brands fa-whatsapp"></i> Postulación Directa</span>
+          <h3>Cargá tus datos y envianos tu CV</h3>
+          <p>Completá esta ficha y enviala directamente a nuestro WhatsApp oficial de Recursos Humanos.</p>
+        </div>
+
+        <form id="form-empleo-cv" class="empleo-form" novalidate>
+          <!-- Nombre y Apellido -->
+          <div class="form-group">
+            <label class="form-label" for="emp-nombre">Nombre y Apellido *</label>
+            <input class="form-control" type="text" id="emp-nombre" name="nombre" placeholder="Ej: Lucas Martínez" required />
+          </div>
+
+          <!-- Especialidad -->
+          <div class="form-group">
+            <label class="form-label">Especialidad técnica principal *</label>
+            <div class="empleo-pills-row">
+              <label class="emp-pill">
+                <input type="radio" name="emp-especialidad" value="Refrigeración y Climatización" checked />
+                <span>Refrigeración</span>
+              </label>
+              <label class="emp-pill">
+                <input type="radio" name="emp-especialidad" value="Electricidad e Iluminación" />
+                <span>Electricidad</span>
+              </label>
+              <label class="emp-pill">
+                <input type="radio" name="emp-especialidad" value="Ambas (Refrigeración y Electricidad)" />
+                <span>Ambas áreas</span>
+              </label>
+            </div>
+          </div>
+
+          <!-- Experiencia -->
+          <div class="form-group">
+            <label class="form-label">Años de experiencia comprobable *</label>
+            <div class="empleo-pills-row">
+              <label class="emp-pill">
+                <input type="radio" name="emp-experiencia" value="1 a 2 años" checked />
+                <span>1 a 2 años</span>
+              </label>
+              <label class="emp-pill">
+                <input type="radio" name="emp-experiencia" value="3 a 5 años" />
+                <span>3 a 5 años</span>
+              </label>
+              <label class="emp-pill">
+                <input type="radio" name="emp-experiencia" value="Más de 5 años" />
+                <span>+5 años</span>
+              </label>
+            </div>
+          </div>
+
+          <!-- Barrio / Zona -->
+          <div class="form-group">
+            <label class="form-label" for="emp-zona">Barrio o Zona de residencia *</label>
+            <input class="form-control" type="text" id="emp-zona" name="zona" placeholder="Ej: Centro, Barrio Vargas, etc." required />
+          </div>
+
+          <!-- Subir CV -->
+          <div class="form-group">
+            <label class="form-label">Adjuntar Curriculum Vitae (CV) *</label>
+            <div class="cv-dropzone" id="cv-dropzone" role="button" tabindex="0" aria-label="Seleccionar archivo de Curriculum Vitae">
+              <input type="file" id="emp-cv-file" accept=".pdf,.doc,.docx" class="cv-file-hidden" />
+              <div class="cv-dz-content" id="cv-dz-default">
+                <div class="cv-dz-icon"><i class="fa-solid fa-id-card-clip"></i></div>
+                <div class="cv-dz-text">
+                  <strong>Tocá aquí para seleccionar tu archivo de CV</strong>
+                  <span>Formatos: PDF, Word (.docx, .doc) — Máx. 10MB</span>
+                </div>
+              </div>
+              <div class="cv-dz-selected" id="cv-dz-selected" style="display: none;">
+                <div class="cv-selected-badge">
+                  <i class="fa-solid fa-circle-check"></i>
+                  <span id="cv-filename-label">cv-archivo.pdf</span>
+                </div>
+                <button type="button" class="cv-change-btn" id="cv-remove-btn" title="Cambiar archivo">
+                  <i class="fa-solid fa-rotate-left"></i> Cambiar
+                </button>
+              </div>
+            </div>
+            <span class="form-hint"><i class="fa-solid fa-circle-info"></i> Si tenés tu CV en Google Drive o LinkedIn, también podés pegar el enlace abajo:</span>
+          </div>
+
+          <!-- Enlace Drive / LinkedIn opcional -->
+          <div class="form-group">
+            <input class="form-control form-control-sm" type="url" id="emp-link" name="cv_link" placeholder="Opcional: https://drive.google.com/... o LinkedIn" />
+          </div>
+
+          <!-- Mensaje / Nota breve opcional -->
+          <div class="form-group">
+            <label class="form-label" for="emp-mensaje">Comentario o mensaje breve (opcional)</label>
+            <textarea class="form-control emp-textarea" id="emp-mensaje" name="mensaje" placeholder="Contanos si tenés movilidad propia, herramientas, certificaciones o alguna referencia..."></textarea>
+          </div>
+
+          <!-- Botón de Envío -->
+          <button type="submit" class="btn btn-wa btn-lg btn-block emp-submit-btn">
+            <i class="fa-brands fa-whatsapp"></i> Postularme por WhatsApp
+          </button>
+
+          <!-- Aviso táctil para celular -->
+          <div class="emp-wa-notice">
+            <i class="fa-solid fa-circle-info"></i>
+            <span>Al tocar en enviar, se abrirá WhatsApp con todos tus datos cargados. Recordá tocar el botón del clip 📎 para adjuntar tu archivo en el chat.</span>
+          </div>
+        </form>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -816,75 +978,81 @@
 <div class="neon-divider"></div>
 
 <!-- ============================================================
-     PREGUNTAS FRECUENTES (FAQ Acordeón - UI/UX Pro Max)
+     PREGUNTAS FRECUENTES (Tarjetas Mini Ultra-Compactas - UI/UX Pro Max)
      ============================================================ -->
 <section id="faq" class="section">
   <div class="container">
     <div class="text-center fade-up">
-      <span class="eyebrow">Dudas habituales</span>
-      <h2 class="section-title">Preguntas <span class="accent">frecuentes</span></h2>
-      <p class="section-desc">Todo lo que necesitás saber sobre nuestros servicios, tiempos de respuesta y garantías de trabajo.</p>
+      <span class="eyebrow">Dudas rápidas</span>
+      <h2 class="section-title section-title-sm">Preguntas <span class="accent">frecuentes</span></h2>
+      <p class="section-desc section-desc-sm">Respuestas breves a las consultas más habituales sobre servicios y garantías.</p>
     </div>
 
-    <div class="faq-accordion-wrap fade-up">
-      <div class="faq-item">
-        <button class="faq-question" type="button" aria-expanded="false">
-          <span class="faq-q-text">¿Cómo solicito un presupuesto o visita técnica?</span>
-          <span class="faq-icon-box"><i class="fa-solid fa-plus"></i></span>
-        </button>
-        <div class="faq-answer">
-          <div class="faq-answer-inner">
-            <p>Podés escribirnos directamente por WhatsApp indicando el tipo de equipo, la falla o la instalación que necesitás. Te responderemos a la brevedad para coordinar la visita y brindarte un presupuesto transparente sin costos ocultos.</p>
+    <div class="faq-grid-square">
+      <!-- Tarjeta 1: Presupuesto -->
+      <div class="faq-card-square fade-up d1">
+        <div class="faq-card-top">
+          <div class="faq-card-icon">
+            <i class="fa-brands fa-whatsapp"></i>
           </div>
+          <h3 class="faq-card-title">¿Cómo pido presupuesto?</h3>
         </div>
+        <p class="faq-card-desc">Escribinos por WhatsApp con tu equipo o falla y coordinamos la visita técnica sin costos ocultos.</p>
       </div>
 
-      <div class="faq-item">
-        <button class="faq-question" type="button" aria-expanded="false">
-          <span class="faq-q-text">¿Los trabajos y reparaciones tienen garantía?</span>
-          <span class="faq-icon-box"><i class="fa-solid fa-plus"></i></span>
-        </button>
-        <div class="faq-answer">
-          <div class="faq-answer-inner">
-            <p>Sí, absolutamente todos nuestros servicios cuentan con garantía escrita. Trabajamos con técnicos matriculados bajo normas de seguridad oficiales y utilizamos repuestos e insumos de primera calidad.</p>
+      <!-- Tarjeta 2: Garantía -->
+      <div class="faq-card-square fade-up d2">
+        <div class="faq-card-top">
+          <div class="faq-card-icon">
+            <i class="fa-solid fa-shield-halved"></i>
           </div>
+          <h3 class="faq-card-title">¿Tienen garantía escrita?</h3>
         </div>
+        <p class="faq-card-desc">Sí, todos los trabajos tienen garantía por escrito y repuestos originales de primera calidad.</p>
       </div>
 
-      <div class="faq-item">
-        <button class="faq-question" type="button" aria-expanded="false">
-          <span class="faq-q-text">¿Atienden urgencias en heladeras comerciales y locales?</span>
-          <span class="faq-icon-box"><i class="fa-solid fa-plus"></i></span>
-        </button>
-        <div class="faq-answer">
-          <div class="faq-answer-inner">
-            <p>Sí, damos prioridad inmediata a locales comerciales, restaurantes y supermercados para evitar pérdidas de mercadería por fallas en heladeras exhibidoras, bateas o cámaras frigoríficas.</p>
+      <!-- Tarjeta 3: Urgencias -->
+      <div class="faq-card-square fade-up d3">
+        <div class="faq-card-top">
+          <div class="faq-card-icon">
+            <i class="fa-solid fa-bolt"></i>
           </div>
+          <h3 class="faq-card-title">¿Atienden urgencias?</h3>
         </div>
+        <p class="faq-card-desc">Prioridad inmediata para comercios y heladeras para evitar pérdidas de mercadería o alimentos.</p>
       </div>
 
-      <div class="faq-item">
-        <button class="faq-question" type="button" aria-expanded="false">
-          <span class="faq-q-text">¿Qué medios de pago reciben?</span>
-          <span class="faq-icon-box"><i class="fa-solid fa-plus"></i></span>
-        </button>
-        <div class="faq-answer">
-          <div class="faq-answer-inner">
-            <p>Aceptamos transferencias bancarias, Mercado Pago, efectivo y tarjetas de débito o crédito. Emitimos comprobantes oficiales por cada servicio brindado.</p>
+      <!-- Tarjeta 4: Medios de Pago -->
+      <div class="faq-card-square fade-up d4">
+        <div class="faq-card-top">
+          <div class="faq-card-icon">
+            <i class="fa-solid fa-circle-check"></i>
           </div>
+          <h3 class="faq-card-title">¿Qué medios de pago?</h3>
         </div>
+        <p class="faq-card-desc">Aceptamos transferencias, Mercado Pago, efectivo y tarjetas de débito o crédito con factura.</p>
       </div>
 
-      <div class="faq-item">
-        <button class="faq-question" type="button" aria-expanded="false">
-          <span class="faq-q-text">¿Cuál es la zona de cobertura en La Rioja?</span>
-          <span class="faq-icon-box"><i class="fa-solid fa-plus"></i></span>
-        </button>
-        <div class="faq-answer">
-          <div class="faq-answer-inner">
-            <p>Cubrimos toda la ciudad de La Rioja Capital y alrededores, atendiendo domicilios particulares, comercios, complejos gastronómicos e industrias.</p>
+      <!-- Tarjeta 5: Cobertura -->
+      <div class="faq-card-square fade-up d5">
+        <div class="faq-card-top">
+          <div class="faq-card-icon">
+            <i class="fa-solid fa-location-dot"></i>
           </div>
+          <h3 class="faq-card-title">¿Zona de cobertura?</h3>
         </div>
+        <p class="faq-card-desc">Toda La Rioja Capital y alrededores, en hogares particulares, comercios e industrias.</p>
+      </div>
+
+      <!-- Tarjeta 6: Matriculados -->
+      <div class="faq-card-square fade-up d6">
+        <div class="faq-card-top">
+          <div class="faq-card-icon">
+            <i class="fa-solid fa-certificate"></i>
+          </div>
+          <h3 class="faq-card-title">¿Técnicos matriculados?</h3>
+        </div>
+        <p class="faq-card-desc">Personal calificado bajo normativas oficiales de seguridad eléctrica y frío comercial.</p>
       </div>
     </div>
   </div>
@@ -898,15 +1066,15 @@
 <section id="contacto" class="section">
   <div class="container">
     <div class="text-center fade-up">
-      <span class="eyebrow">Contacto</span>
-      <h2 class="section-title">¿Necesitás ayuda con tus <span class="accent">equipos?</span></h2>
-      <p class="section-desc">Completá el formulario y te enviamos el mensaje directo a WhatsApp para una atención rápida y personalizada.</p>
+      <span class="eyebrow">Contacto directo</span>
+      <h2 class="section-title">¿Qué estás <span class="accent">buscando hoy?</span></h2>
+      <p class="section-desc">Respondé este breve quiz interactivo para contarnos si buscás iluminación, electricidad o refrigeración y envialo directo a nuestro WhatsApp sin necesidad de correo.</p>
     </div>
 
-    <div class="contacto-grid fade-up">
+    <div class="contacto-grid">
 
       <!-- Información -->
-      <div class="contacto-info">
+      <div class="contacto-info fade-up d1">
         <!-- Mapa embebido -->
         <div class="map-embed">
           <iframe
@@ -959,35 +1127,174 @@
         </div>
       </div>
 
-      <!-- Formulario -->
-      <div class="contacto-form-wrap">
-        <h3 class="form-title"><i class="fa-brands fa-whatsapp" style="color:var(--neon);margin-right:.5rem;"></i>Enviar consulta por WhatsApp</h3>
+      <!-- Quiz Interactivo → WhatsApp (Sin correo) -->
+      <div class="contacto-form-wrap quiz-wrap fade-up d2">
+        <div class="quiz-header">
+          <div class="quiz-header-top">
+            <h3 class="form-title quiz-main-title">
+              <i class="fa-brands fa-whatsapp"></i> Quiz de consulta rápida
+            </h3>
+            <span class="quiz-step-badge" id="quiz-step-badge">Paso 1 de 4</span>
+          </div>
+          <p class="quiz-subtitle">Seleccioná qué estás buscando y recibí atención directa por WhatsApp.</p>
+          <div class="quiz-progress-track" aria-hidden="true">
+            <div class="quiz-progress-fill" id="quiz-progress-fill" style="width: 25%;"></div>
+          </div>
+        </div>
 
-        <form id="form-contacto" novalidate aria-label="Formulario de consulta directa por WhatsApp">
-          <div class="form-group">
-            <label class="form-label" for="nombre">Nombre completo *</label>
-            <input class="form-control" type="text" id="nombre" name="nombre" autocomplete="name" placeholder="Nombre Completo" required />
+        <form id="form-quiz-contacto" novalidate aria-label="Quiz interactivo de consulta por WhatsApp">
+
+          <!-- PASO 1: Rubro principal -->
+          <div class="quiz-step active" data-step="1">
+            <p class="quiz-question-title">1. ¿Qué servicio estás buscando?</p>
+            <div class="quiz-options-grid quiz-grid-main">
+              <button type="button" class="quiz-option-card quiz-featured" data-area="Iluminación" data-icon="fa-lightbulb">
+                <span class="quiz-opt-icon"><i class="fa-solid fa-lightbulb"></i></span>
+                <span class="quiz-opt-text">
+                  <strong>Iluminación</strong>
+                  <small>Luminarias LED, interior, exterior y jardines</small>
+                </span>
+                <span class="quiz-opt-check"><i class="fa-solid fa-chevron-right"></i></span>
+              </button>
+
+              <button type="button" class="quiz-option-card quiz-featured" data-area="Electricidad" data-icon="fa-bolt">
+                <span class="quiz-opt-icon"><i class="fa-solid fa-bolt"></i></span>
+                <span class="quiz-opt-text">
+                  <strong>Electricidad</strong>
+                  <small>Instalaciones, tableros, cableados o fallas</small>
+                </span>
+                <span class="quiz-opt-check"><i class="fa-solid fa-chevron-right"></i></span>
+              </button>
+
+              <button type="button" class="quiz-option-card quiz-featured" data-area="Refrigeración" data-icon="fa-snowflake">
+                <span class="quiz-opt-icon"><i class="fa-solid fa-snowflake"></i></span>
+                <span class="quiz-opt-text">
+                  <strong>Refrigeración</strong>
+                  <small>Aires acondicionados, heladeras y cámaras</small>
+                </span>
+                <span class="quiz-opt-check"><i class="fa-solid fa-chevron-right"></i></span>
+              </button>
+
+              <button type="button" class="quiz-option-card" data-area="Electrodomésticos" data-icon="fa-plug">
+                <span class="quiz-opt-icon"><i class="fa-solid fa-plug"></i></span>
+                <span class="quiz-opt-text">
+                  <strong>Electrodomésticos</strong>
+                  <small>Lavarropas, hornos y microondas (con retiro)</small>
+                </span>
+                <span class="quiz-opt-check"><i class="fa-solid fa-chevron-right"></i></span>
+              </button>
+
+              <button type="button" class="quiz-option-card" data-area="Cámaras, Redes y Domótica" data-icon="fa-shield-halved">
+                <span class="quiz-opt-icon"><i class="fa-solid fa-shield-halved"></i></span>
+                <span class="quiz-opt-text">
+                  <strong>Cámaras, Redes y Domótica</strong>
+                  <small>Seguridad CCTV, Wi-Fi, routers y automatización</small>
+                </span>
+                <span class="quiz-opt-check"><i class="fa-solid fa-chevron-right"></i></span>
+              </button>
+
+              <button type="button" class="quiz-option-card" data-area="Materiales / Otra consulta" data-icon="fa-boxes-stacked">
+                <span class="quiz-opt-icon"><i class="fa-solid fa-boxes-stacked"></i></span>
+                <span class="quiz-opt-text">
+                  <strong>Materiales / Otra consulta</strong>
+                  <small>Venta de materiales eléctricos o asesoramiento</small>
+                </span>
+                <span class="quiz-opt-check"><i class="fa-solid fa-chevron-right"></i></span>
+              </button>
+            </div>
           </div>
-          <div class="form-group">
-            <label class="form-label" for="servicio">Servicio de interés</label>
-            <select class="form-control" id="servicio" name="servicio">
-              <option value="">Seleccioná un servicio...</option>
-              <option>Electricidad</option>
-              <option>Refrigeración</option>
-              <option>Iluminación</option>
-              <option>Electrodomésticos (Reparación / Retiro)</option>
-              <option>Tecnologías (Cámaras, Routers, etc.)</option>
-              <option>Domótica</option>
-              <option>Otro / consulta general</option>
-            </select>
+
+          <!-- PASO 2: Necesidad específica según el rubro -->
+          <div class="quiz-step" data-step="2">
+            <div class="quiz-step-top-bar">
+              <button type="button" class="quiz-back-link" data-quiz-prev>
+                <i class="fa-solid fa-arrow-left"></i> Cambiar rubro
+              </button>
+              <span class="quiz-selected-pill" id="quiz-area-pill"></span>
+            </div>
+            <p class="quiz-question-title">2. ¿Qué necesitás hacer específicamente?</p>
+            <div class="quiz-options-grid quiz-suboptions-list" id="quiz-suboptions">
+              <!-- Opciones dinámicas inyectadas por JS -->
+            </div>
           </div>
-          <div class="form-group">
-            <label class="form-label" for="mensaje">Descripción de tu consulta *</label>
-            <textarea class="form-control" id="mensaje" name="mensaje" placeholder="Describí brevemente qué servicio necesitás o el problema de tu equipo..." required></textarea>
+
+          <!-- PASO 3: Tipo de lugar y urgencia -->
+          <div class="quiz-step" data-step="3">
+            <div class="quiz-step-top-bar">
+              <button type="button" class="quiz-back-link" data-quiz-prev>
+                <i class="fa-solid fa-arrow-left"></i> Volver atrás
+              </button>
+            </div>
+
+            <p class="quiz-question-title">3. ¿Para dónde es el servicio?</p>
+            <div class="quiz-pills-grid" id="quiz-lugar-group">
+              <button type="button" class="quiz-pill-btn" data-lugar="Hogar / Domicilio">
+                <i class="fa-solid fa-house"></i>
+                <span>Hogar / Domicilio</span>
+              </button>
+              <button type="button" class="quiz-pill-btn" data-lugar="Local Comercial">
+                <i class="fa-solid fa-store"></i>
+                <span>Local Comercial</span>
+              </button>
+              <button type="button" class="quiz-pill-btn" data-lugar="Industria / Obra">
+                <i class="fa-solid fa-industry"></i>
+                <span>Industria / Obra</span>
+              </button>
+            </div>
+
+            <p class="quiz-question-title" style="margin-top: 1.25rem;">¿Con qué urgencia lo buscás?</p>
+            <div class="quiz-pills-grid" id="quiz-urgencia-group">
+              <button type="button" class="quiz-pill-btn" data-urgencia="Urgente (lo antes posible)">
+                <i class="fa-solid fa-bolt"></i>
+                <span>Urgente</span>
+              </button>
+              <button type="button" class="quiz-pill-btn" data-urgencia="Para esta semana">
+                <i class="fa-solid fa-clock"></i>
+                <span>Esta semana</span>
+              </button>
+              <button type="button" class="quiz-pill-btn" data-urgencia="Solo presupuesto / consulta">
+                <i class="fa-solid fa-circle-question"></i>
+                <span>Presupuesto</span>
+              </button>
+            </div>
+
+            <div class="quiz-nav-actions">
+              <button type="button" class="btn btn-primary quiz-next-btn" id="quiz-step3-next">
+                Continuar <i class="fa-solid fa-arrow-right"></i>
+              </button>
+            </div>
           </div>
-          <button type="submit" class="btn btn-wa btn-lg form-submit">
-            <i class="fa-brands fa-whatsapp"></i> Enviar por WhatsApp
-          </button>
+
+          <!-- PASO 4: Resumen + Nombre (sin correo) → Enviar por WhatsApp -->
+          <div class="quiz-step" data-step="4">
+            <div class="quiz-step-top-bar">
+              <button type="button" class="quiz-back-link" data-quiz-prev>
+                <i class="fa-solid fa-arrow-left"></i> Modificar selección
+              </button>
+              <button type="button" class="quiz-reset-link" id="quiz-reset-btn">
+                <i class="fa-solid fa-rotate-left"></i> Reiniciar
+              </button>
+            </div>
+
+            <div class="quiz-summary-box" id="quiz-summary-box">
+              <!-- Resumen dinámico -->
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="quiz-nombre">Tu nombre *</label>
+              <input class="form-control" type="text" id="quiz-nombre" name="nombre" autocomplete="name" placeholder="Ej: Juan Pérez" required />
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="quiz-detalle">Detalle adicional (opcional)</label>
+              <textarea class="form-control quiz-textarea" id="quiz-detalle" name="detalle" placeholder="Opcional: barrio/zona, marca del equipo o algún detalle extra..."></textarea>
+            </div>
+
+            <button type="submit" class="btn btn-wa btn-lg form-submit quiz-submit-btn">
+              <i class="fa-brands fa-whatsapp"></i> Enviar consulta por WhatsApp
+            </button>
+          </div>
+
         </form>
       </div>
 
@@ -1036,6 +1343,7 @@
           <li><a href="#servicios"><i class="fa-solid fa-chevron-right"></i> Electrodomésticos</a></li>
           <li><a href="#servicios"><i class="fa-solid fa-chevron-right"></i> Tecnologías & Redes</a></li>
           <li><a href="#servicios"><i class="fa-solid fa-chevron-right"></i> Domótica</a></li>
+          <li><a href="#empleo" style="color:var(--neon);font-weight:700;"><i class="fa-solid fa-briefcase"></i> Trabajá con nosotros</a></li>
         </ul>
       </div>
 
@@ -1079,6 +1387,7 @@
 <!-- ============================================================
      SCRIPTS (Diferidos + Locales con caché inmutable)
      ============================================================ -->
+<script src="/assets/vendor/swiper-bundle.min.js" defer></script>
 <script src="/assets/js/main.js" defer></script>
 
 </body>
