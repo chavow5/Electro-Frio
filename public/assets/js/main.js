@@ -441,7 +441,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const zona = document.getElementById('emp-zona')?.value.trim();
     const especialidad = document.querySelector('input[name="emp-especialidad"]:checked')?.value || 'Técnico';
     const experiencia = document.querySelector('input[name="emp-experiencia"]:checked')?.value || 'Con experiencia';
-    const cvLink = document.getElementById('emp-link')?.value.trim();
     const mensaje = document.getElementById('emp-mensaje')?.value.trim();
 
     if (!nombre) {
@@ -459,9 +458,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (selectedCVName) {
       texto += `📄 *Archivo CV:* ${selectedCVName} (adjunto en este chat con el clip 📎)\n`;
-    }
-    if (cvLink) {
-      texto += `🔗 *Enlace CV online:* ${cvLink}\n`;
     }
     if (mensaje) {
       texto += `💬 *Comentario:* ${mensaje}\n`;
